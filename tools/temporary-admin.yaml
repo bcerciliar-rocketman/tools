@@ -15,25 +15,27 @@ tool:
     - Customize the username, full name, and visibility of the admin account
 
 steps:
-  - name: Create Static Group
-    uses: static-groups/create
+  - id: group
+    name: Create Static Group
+    module: static-groups/create
     properties:
       name: Temporary Admin Custom Static Group from RCC Pro
+    depends_on: []
 
-  - name: Create API Roles and Clients
-    uses: api-roles-clients/create
+  - id: api
+    name: Create API Roles and Clients
+    module: api-roles-clients/create
     properties:
       name: Temporary Admin from RCC Pro
       privileges:
         - all
+    depends_on: []
 
-  - name: Create Policy
-    uses: policy/create
-    depends_on:
-      - static-groups/create
-      - api-roles-clients/create
+  - id: policy
+    name: Create Policy
+    module: policy/create
     properties:
-      payload: |
+      xml: |
         <?xml version="1.0" encoding="UTF-8"?>
         <policy>
             <general>
@@ -86,8 +88,8 @@ steps:
                 <computers/>
                 <computer_groups>
                   <computer_group>
-                    <id>${{static-groups/create.id}}</id>
-                    <name>${{static-groups/create.name}}</name>
+                    <id>${{group.id}}</id>
+                    <name>${{group.name}}</name>
                   </computer_group>
                 </computer_groups>
                 <buildings/>
@@ -138,8 +140,8 @@ steps:
                     <name>Rocketman Command Center: Launch a Tool</name>
                     <priority>After</priority>
                     <parameter4>TemporaryAdmin</parameter4>
-                    <parameter5>--clientId ${{api-roles-clients/create.client_id}}</parameter5>
-                    <parameter6>--clientSecret ${{api-roles-clients/create.client_secret}}</parameter6>
+                    <parameter5>--clientId ${{api.client_id}}</parameter5>
+                    <parameter6>--clientSecret ${{api.client_secret}}</parameter6>
                     <parameter7/>
                     <parameter8/>
                     <parameter9/>
@@ -212,18 +214,22 @@ steps:
                 <action>none</action>
             </disk_encryption>
         </policy>
-
-  - name: Create Configuration Profile
-    uses: osx-configuration-profiles/create
+    depends_on:
+      - group
+      - api
+      
+  - id: profile
+    name: Create Configuration Profile
+    module: osx-configuration-profiles/create
     properties:
       name: Temporary Admin from RCC Pro
+    depends_on: []
 
-  - name: Create Configuration Profile - External Applications
+  - id: profile-external
+    name: Create Configuration Profile - External Applications
     uses: osx-configuration-profiles/acs-external-applications
-    depends_on:
-      - osx-configuration-profiles/create
     properties:
-      configuration_profile: ${{ osx-configuration-profiles/create.id }}
+      profile: ${{ profile.id }}
       schema: |
         {
           "title": "Temporary Admin (tech.rocketman.tempadmin)",
@@ -257,7 +263,7 @@ steps:
               "description": "The name of a Static Group to which the policy is scoped and computers should be removed after admin rights are granted.",
               "property_order": 6,
               "type": "string",
-              "default": ${{static-groups/create.name}}
+              "default": ${{group.name}}
             },
             "uploadLog": {
               "title": "Upload log",
@@ -291,3 +297,6 @@ steps:
             }
           }
         }
+    depends_on:
+      - profile
+      - group
