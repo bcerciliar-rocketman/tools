@@ -229,7 +229,7 @@ steps:
     name: Create Configuration Profile - External Applications
     module: osx-configuration-profiles/acs-external-applications
     properties:
-      profile: ${{ profile.name }}
+      profile: ${{profile.name}}
       custom_domain: tech.rocketman.tempadmin
       schema: |
         {
