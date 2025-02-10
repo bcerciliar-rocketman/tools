@@ -1,0 +1,16 @@
+tool:
+  name: Patrick Test
+  version: 2025.2.3
+  summary: Testing Workflow
+  overview: Just Testing
+  features:
+    - Just Testing
+    - A patrick test
+
+steps:
+  - id: group
+    name: Create Static Group
+    module: static-groups/create
+    properties:
+      name: RCC-Pro Patrick
+    depends_on: []
