@@ -230,6 +230,7 @@ steps:
     module: osx-configuration-profiles/acs-external-applications
     properties:
       profile: ${{ profile.name }}
+      custom_domain: tech.rocketman.tempadmin
       schema: |
         {
           "title": "Temporary Admin (tech.rocketman.tempadmin)",
