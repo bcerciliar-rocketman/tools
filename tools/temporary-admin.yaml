@@ -264,7 +264,7 @@ steps:
               "description": "The name of a Static Group to which the policy is scoped and computers should be removed after admin rights are granted.",
               "property_order": 6,
               "type": "string",
-              "default": ${{group.name}}
+              "default": "${{group.name}}"
             },
             "uploadLog": {
               "title": "Upload log",
