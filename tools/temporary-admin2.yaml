@@ -227,7 +227,7 @@ steps:
 
   - id: profile-external
     name: Create Configuration Profile - External Applications
-    uses: osx-configuration-profiles/acs-external-applications
+    module: osx-configuration-profiles/acs-external-applications
     properties:
       profile: ${{ profile.id }}
       schema: |
