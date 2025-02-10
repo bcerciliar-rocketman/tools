@@ -1,7 +1,7 @@
 tool:
-  name: Temporary Admin 3
+  name: Temporary Admin
   version: 2025.2.3
-  summary: 3 Provides temporary admin rights to standard users
+  summary: Provides temporary admin rights to standard users
   overview: >
     This tool is set up so that the Help Desk can add a user to a Static Group in Jamf
     Pro that will provide them with one-time use of Temporary Admin. If you want to
@@ -19,14 +19,14 @@ steps:
     name: Create Static Group
     module: static-groups/create
     properties:
-      name: Temporary Admin Custom Static Group from RCC Pro
+      name: RCC-Pro Temporary Admin Custom Static Group
     depends_on: []
 
   - id: api
     name: Create API Roles and Clients
     module: api-roles-clients/create
     properties:
-      name: Temporary Admin from RCC Pro
+      name: RCC-Pro Temporary Admin
       privileges:
         - all
     depends_on: []
@@ -39,7 +39,7 @@ steps:
         <?xml version="1.0" encoding="UTF-8"?>
         <policy>
             <general>
-                <name>Temporary Admin from RCC Pro</name>
+                <name>RCC-Pro Temporary Admin</name>
                 <enabled>true</enabled>
                 <trigger>USER_INITIATED</trigger>
                 <trigger_checkin>false</trigger_checkin>
@@ -222,14 +222,14 @@ steps:
     name: Create Configuration Profile
     module: osx-configuration-profiles/create
     properties:
-      name: Temporary Admin from RCC Pro
+      name: RCC-Pro Temporary Admin
     depends_on: []
 
   - id: profile-external
     name: Create Configuration Profile - External Applications
     module: osx-configuration-profiles/acs-external-applications
     properties:
-      profile: ${{ profile.id }}
+      profile: ${{ profile.name }}
       schema: |
         {
           "title": "Temporary Admin (tech.rocketman.tempadmin)",
