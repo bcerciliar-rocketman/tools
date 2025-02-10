@@ -1,7 +1,7 @@
 tool:
-  name: Temporary Admin 2
+  name: Temporary Admin 3
   version: 2025.2.3
-  summary: Provides temporary admin rights to standard users
+  summary: 3 Provides temporary admin rights to standard users
   overview: >
     This tool is set up so that the Help Desk can add a user to a Static Group in Jamf
     Pro that will provide them with one-time use of Temporary Admin. If you want to
