@@ -1,0 +1,23 @@
+tool:
+  name: Test Workflow
+  version: 1.0.0
+  summary: just testing from Bruno
+  overview: just testing from Bruno
+  features:
+    - debug
+steps:
+  - id: api
+    name: Create Api Roles
+    module: api-roles-clients/create
+    properties:
+      name: JUST FOR TEST - RCC Pro - Api
+      privileges:
+        - all
+    depends_on: []
+  - id: group
+    name: Create Static Group
+    module: static-groups/create
+    properties:
+      name: JUST FOR TEST - RCC Pro - Group
+    depends_on:
+      - api
