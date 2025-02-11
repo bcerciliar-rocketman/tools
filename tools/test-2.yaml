@@ -1,0 +1,10 @@
+tool:
+  name: test 2
+  version: '2025'
+  summary: summary
+  overview: overview
+  features:
+    - teste
+    - test
+    - test
+steps: []
