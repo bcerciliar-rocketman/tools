@@ -1,0 +1,23 @@
+tool:
+  name: BreakGlass Admin
+  version: 1.0.0
+  summary: Creates and manages a hidden admin account with a rotating password
+  overview: Like LAPS but better!
+  features:
+    - password
+    - hidden
+    - readable
+steps:
+  - id: step-1
+    name: 'Deploy '
+    module: static-groups/create
+    properties:
+      name: <computer_group><name>Testing</name></computer_group>
+    depends_on: []
+  - id: step-2
+    name: Policy
+    module: policy/create
+    properties:
+      xml: ''
+    depends_on:
+      - step-1
