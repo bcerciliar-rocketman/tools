@@ -95,7 +95,8 @@ steps:
               "title": "Extension Attribute",
               "description": "The name of the extension attribute where the password is stored.",
               "property_order": 7,
-              "type": "string"
+              "type": "string",
+              "default": "Break Glass Admin Password${{sys.execution_id}}"
             },
             "adminVisible": {
               "title": "Admin Visible",
