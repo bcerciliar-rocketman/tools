@@ -1,6 +1,6 @@
 tool:
   name: Temporary Admin
-  version: 2025.2.3
+  version: 2025.2.4
   summary: Provides temporary admin rights to standard users
   overview: >
     This tool is set up so that the Help Desk can add a user to a Static Group
