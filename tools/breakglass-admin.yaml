@@ -173,6 +173,12 @@ steps:
       custom_domain: tech.rocketman.breakglass
     depends_on:
       - profile
+  - id: group
+    name: Computer Group
+    module: static-groups/create
+    properties:
+      name: Break Glass Admin
+    depends_on: []
   - id: policy
     name: Policy
     module: policy/create
@@ -232,7 +238,12 @@ steps:
             <scope>
                 <all_computers>false</all_computers>
                 <computers/>
-                <computer_groups/>
+                <computer_groups>
+                  <computer_group>
+                    <id>${{group.id}}</id>
+                    <name>${{group.name}}</name>
+                  </computer_group>
+                </computer_groups>
                 <buildings/>
                 <departments/>
                 <limit_to_users>
@@ -357,7 +368,8 @@ steps:
                 <action>none</action>
             </disk_encryption>
         </policy>
-    depends_on: []
+    depends_on:
+      - group
   - id: ea
     name: Extension Attributes
     module: extension-attributes/create
