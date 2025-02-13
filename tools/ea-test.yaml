@@ -1,0 +1,37 @@
+tool:
+  name: EA test
+  version: 1.0.0
+  summary: EA test
+  overview: EA test
+  features:
+    - ea test
+steps:
+  - id: step-1
+    name: Step 1
+    module: extension-attributes/create
+    properties:
+      name: RCC-Pro Break Glass Admin Password
+      description: >-
+        This script will retrieve the Backdoor Admin Password from the system
+        keychain of the computer using Rocketman Command Center's \"Get Backdoor
+        Admin Password From Keychain\" tool.
+      data_type: STRING
+      inventory_display_type: EXTENSION_ATTRIBUTES
+      input_type: SCRIPT
+      script_contents: >-
+        #!/bin/zsh  # Define the username of the backdoor admin account
+        BreakglassAdminUsername=$(defaults read "/Library/Managed
+        Preferences/tech.rocketman.breakglass.plist" shortName)  # Check if
+        rocketman (RCC) is installed if ! command -v rocketman &>/dev/null;
+        then     echo "<result>RCC Not Installed</result>"     exit 0 fi  #
+        Retrieve the password from the keychain
+        BreakglassAdminPassword=$(rocketman GetBackdoorAdminPasswordFromKeychain
+        --shortName "${BreakglassAdminUsername}" 2>/dev/null) exitCode=$?  #
+        Evaluate the result if [[ $exitCode -eq 0 && -n
+        "$BreakglassAdminPassword" ]]; then     # Successfully retrieved
+        password     echo "<result>$BreakglassAdminPassword</result>" elif [[
+        $exitCode -eq 1 ]]; then     # Tool indicates no password set     echo
+        "<result>No Backdoor Admin Password Set</result>" else     # Any other
+        non-zero exit code is considered an unknown error     echo
+        "<result>Other Error Occurred</result>" fi
+    depends_on: []
