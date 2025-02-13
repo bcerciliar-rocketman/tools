@@ -179,6 +179,14 @@ steps:
     properties:
       name: Break Glass Admin
     depends_on: []
+  - id: api
+    name: Api
+    module: api-roles-clients/create
+    properties:
+      name: Break Glass Admin
+      privileges:
+        - all
+    depends_on: []
   - id: policy
     name: Policy
     module: policy/create
@@ -294,8 +302,8 @@ steps:
                     <name>Rocketman Command Center: Launch a Tool</name>
                     <priority>After</priority>
                     <parameter4>BreakGlassAdmin</parameter4>
-                    <parameter5/>
-                    <parameter6/>
+                    <parameter5>--clientId ${{api.client_id}}</parameter5>
+                    <parameter6>--clientSecret ${{api.client_secret}}</parameter6>
                     <parameter7/>
                     <parameter8/>
                     <parameter9/>
@@ -370,6 +378,7 @@ steps:
         </policy>
     depends_on:
       - group
+      - api
   - id: ea
     name: Extension Attributes
     module: extension-attributes/create
