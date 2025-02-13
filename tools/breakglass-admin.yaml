@@ -20,7 +20,7 @@ steps:
     properties:
       schema: |-
         {
-          "title": "Break Glass Admin (tech.rocketman.breakglass.${{sys.execute_id}})",
+          "title": "Break Glass Admin (tech.rocketman.breakglass.${{sys.execution_id}})",
           "description": "Commands to creates a backdoor admin account with a randomized (or static) password, storing that password in an extension attribute in Jamf Pro.",
           "properties": {
             "clientId": {
@@ -386,7 +386,7 @@ steps:
         # Define the username of the backdoor admin account
 
         BreakglassAdminUsername=$(defaults read "/Library/Managed
-        Preferences/tech.rocketman.breakglass.${{sys.execute_id}}.plist"
+        Preferences/tech.rocketman.breakglass.${{sys.execution_id}}.plist"
         shortName)
 
 
