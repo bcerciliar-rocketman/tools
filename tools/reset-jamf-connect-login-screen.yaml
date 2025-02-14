@@ -12,6 +12,9 @@ tool:
     - Ensures a user is logged in before running
     - Ensures the user account is setup before running
     - Allows for exceptions for backdoor admin accounts
+  post_setup: >-
+    Configure any backdoor admin accounts to ignore in the Configuration
+    Profile, and scope this profile to any devices that you choose!
 steps:
   - id: step-1
     name: Create Configuration Profile
