@@ -27,7 +27,6 @@ steps:
       name: RCC-Pro Temporary Admin
       privileges:
         - all
-        - Testing
     depends_on: []
   - id: policy
     name: Create Policy
