@@ -1,0 +1,17 @@
+tool:
+  name: API ROLES TEST
+  version: 1.0.0
+  summary: API ROLES TEST
+  overview: API ROLES TEST
+  features:
+    - API ROLES TEST
+  post_setup: API ROLES TEST this is a post setup message
+steps:
+  - id: step-1
+    name: Api Roles
+    module: api-roles-clients/create
+    properties:
+      name: JUST TESTING
+      privileges:
+        - all
+    depends_on: []
