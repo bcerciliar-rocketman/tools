@@ -140,7 +140,7 @@ steps:
                     <parameter4>TemporaryAdmin</parameter4>
                     <parameter5>--clientId ${{api.client_id}}</parameter5>
                     <parameter6>--clientSecret ${{api.client_secret}}</parameter6>
-                    <parameter7/>
+                    <parameter7>--domain tech.rocketman.tempadmin.${{sys.execution_id}}</parameter7>
                     <parameter8/>
                     <parameter9/>
                     <parameter10/>
