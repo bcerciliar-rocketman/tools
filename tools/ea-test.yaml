@@ -5,6 +5,7 @@ tool:
   overview: EA test
   features:
     - ea test
+  post_setup: Testing post setup
 steps:
   - id: step-1
     name: Step 1
