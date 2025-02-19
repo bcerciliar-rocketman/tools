@@ -1,0 +1,77 @@
+setup:
+  package:
+    file: "rocketman.pkg"
+    version: "v1.0.21"
+
+  script:
+    content: >-
+      #!/bin/zsh
+      :<<HEADER
+
+      ██████╗  ██████╗  ██████╗██╗  ██╗███████╗████████╗███╗   ███╗ █████╗ ███╗   ██╗
+      ██╔══██╗██╔═══██╗██╔════╝██║ ██╔╝██╔════╝╚══██╔══╝████╗ ████║██╔══██╗████╗  ██║
+      ██████╔╝██║   ██║██║     █████╔╝ █████╗     ██║   ██╔████╔██║███████║██╔██╗ ██║
+      ██╔══██╗██║   ██║██║     ██╔═██╗ ██╔══╝     ██║   ██║╚██╔╝██║██╔══██║██║╚██╗██║
+      ██║  ██║╚██████╔╝╚██████╗██║  ██╗███████╗   ██║   ██║ ╚═╝ ██║██║  ██║██║ ╚████║
+      ╚═╝  ╚═╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝
+
+              Name: Rocketman Command Center: Launch a Tool
+        Description: This script launches a tool in Rocketman's Command Center with specific script parameters in place.
+        Created By: Patrick Blackmore
+            Support: For support of this script or the Rocketman Command Center tools, email support@rocketman.tech
+            License: Copyright (c) 2024, Rocketman Management LLC. All rights reserved.
+      HEADER
+
+      ## Set the path to the executable binary
+      toolBox="rocketman"
+
+      ## Initialize an array to hold command-line arguments after processing
+      all_args=()
+
+      ## Parses each parameter from Jamf Pro GUI and adds it to the all_args array
+      parse_and_add_args() {
+        local param="$1"
+        # Skip processing if the parameter field is empty
+        if [[ -z $param ]]; then
+          return
+        fi
+        # Split parameters respecting quotes and append to all_args
+        local -a split_args=("${(@Q)${(z)param}}")
+        all_args+=("${split_args[@]}")
+      }
+
+      # # Display all original parameters received from Jamf
+      # echo "Original parameters received from Jamf:"
+      # for arg in "$@"; do
+      #   echo " - '${arg}'"
+      # done
+
+      # Check for script execution from a Jamf Pro policy
+      if [[ $1 == "/" ]]; then
+        # echo "Running within a Jamf Pro policy."
+        # echo "Initial number of parameters received: ${#argv[@]}"
+        # echo " - Mount point: ${1}"
+        # echo " - Computer name: ${2}"
+        # echo " - User: ${3}"
+        shift 3  # Exclude Jamf-specific parameters
+        # echo "Excluded 3 Jamf-specific parameters."
+      fi
+
+      # Process remaining parameters from the GUI
+      # echo "Processing the remaining ${#argv[@]} parameters..."
+      for param in "$@"; do
+        parse_and_add_args "$param"
+      done
+
+      # # Log the processed parameters for clarity
+      # echo "Processed parameters:"
+      # for arg in "${all_args[@]}"; do
+      #   echo " - '${arg}'"
+      # done
+
+      # # Display the full command before execution
+      # echo "Executing: ${toolBox} ${all_args[@]}"
+
+      # Execute the command
+      ${toolBox} ${all_args[@]}
+    sha256: 0000000000000000000000000000000000000000000000000000000000000000
