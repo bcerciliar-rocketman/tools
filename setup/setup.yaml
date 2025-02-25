@@ -1,7 +1,7 @@
 setup:
   package:
-    file: "rocketman.pkg"
-    version: "v1.0.21"
+    file: "https://github.com/brunohccz/pro/releases/download/v1.0.15/rcc.pkg"
+    version: "v1.0.22"
 
   script:
     content: >-
