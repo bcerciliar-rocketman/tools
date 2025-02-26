@@ -226,72 +226,80 @@ steps:
     properties:
       profile: ${{profile.name}}
       custom_domain: tech.rocketman.tempadmin
-      schema: |
+      schema: |-
         {
-          "title": "Temporary Admin (tech.rocketman.tempadmin.${{sys.execution_id}})",
-          "description": "Commands to provides temporary admin rights to standard users.",
-          "properties": {
-            "action": {
-              "title": "Action",
-              "description": "Defaults to 'promote' so only used for clarity/documentation. Required for demote policy",
-              "property_order": 3,
-              "type": "string",
-              "options": {
-                "enum_titles": ["Promote", "Demote"]
-              },
-              "enum": ["promote", "demote"]
-            },
-            "timeMin": {
-              "title": "Time (in min)",
-              "description": "Time (in min) for admin rights",
-              "property_order": 4,
-              "type": "integer",
-              "default": 15
-            },
-            "askReason": {
-              "title": "Ask for reason",
-              "description": "If set the user will be prompted to provide a reason they need the access which is available in the policy log.",
-              "property_order": 5,
-              "type": "string"
-            },
-            "removeGroup": {
-              "title": "Remove Group",
-              "description": "The name of a Static Group to which the policy is scoped and computers should be removed after admin rights are granted.",
-              "property_order": 6,
-              "type": "string",
-              "default": "${{group.name}}"
-            },
-            "uploadLog": {
-              "title": "Upload log",
-              "description": "If set, the system logs for the duration of time that admin rights were granted will be added to the computer's record as an attachment.",
-              "property_order": 7,
-              "type": "boolean"
-            },
-            "logo": {
-              "title": "Logo",
-              "description": "Path to the logo file. Ex: --logo /abc/my-logo.png",
-              "property_order": 8,
-              "type": "string"
-            },
-            "width": {
-              "title": "Width",
-              "description": "Width of dialog box",
-              "property_order": 9,
-              "type": "string"
-            },
-            "height": {
-              "title": "Height",
-              "description": "Height of dialog box",
-              "property_order": 10,
-              "type": "string"
-            },
-            "domain": {
-              "title": "Domain",
-              "description": "Domain for options set in local or managed plists. Defaults to 'tech.rocketman.tempadmin.${{sys.execution_id}}'",
-              "property_order": 11,
-              "type": "string"
+            "title": "Temporary Admin",
+            "description": "Commands to provide temporary admin rights to standard users.",
+            "properties": {
+                "timeMin": {
+                    "title": "Time (in min)",
+                    "description": "Time (in min) for admin rights",
+                    "property_order": 4,
+                    "type": "integer",
+                    "default": 15
+                },
+                "askReason": {
+                    "title": "Ask for reason",
+                    "description": "If set, the user will be prompted to provide a reason they need the access, which is available in the policy log.",
+                    "property_order": 5,
+                    "type": "string"
+                },
+                "removeGroup": {
+                    "title": "Remove Group",
+                    "description": "The name of a Static Group to which the policy is scoped and computers should be removed after admin rights are granted.",
+                    "property_order": 6,
+                    "type": "string",
+                    "default": "${{group.name}}"
+                },
+                "logo": {
+                    "title": "Logo",
+                    "description": "Path to the logo file. Ex: --logo /abc/my-logo.png",
+                    "property_order": 8,
+                    "type": "string"
+                },
+                "advancedOptions": {
+                    "title": "Advanced Options",
+                    "description": "These are advanced options that should be used with caution. Make sure you read the documentation before setting these preferences!",
+                    "type": "object",
+                    "property_order": 20,
+                    "properties": {
+                        "action": {
+                            "title": "Action",
+                            "description": "Defaults to 'promote' so only used for clarity/documentation. Required for demote policy",
+                            "property_order": 1,
+                            "type": "string",
+                            "options": {
+                                "enum_titles": [
+                                    "Promote",
+                                    "Demote"
+                                ]
+                            },
+                            "enum": [
+                                "promote",
+                                "demote"
+                            ]
+                        },
+                        "uploadLog": {
+                            "title": "Upload log",
+                            "description": "If set, the system logs for the duration of time that admin rights were granted will be added to the computer's record as an attachment.",
+                            "property_order": 2,
+                            "type": "boolean"
+                        },
+                        "width": {
+                            "title": "Width",
+                            "description": "Width of dialog box",
+                            "property_order": 3,
+                            "type": "string"
+                        },
+                        "height": {
+                            "title": "Height",
+                            "description": "Height of dialog box",
+                            "property_order": 4,
+                          "type": "string"
+                        }
+                    }
+                }
             }
-          }
         }
     depends_on:
       - profile
