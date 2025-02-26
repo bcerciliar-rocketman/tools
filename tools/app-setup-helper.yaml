@@ -17,6 +17,9 @@ tool:
     - Allows you to define multiple applications
     - Customized branding and messaging
     - Allows you to set a timeout
+  post_setup: >-
+    Configure the Configuration Profile, and then scope the Policy and
+    Configuration Profile to the computers you would like to target. 
 steps:
   - id: profile
     name: App Setup Helper Configurations
