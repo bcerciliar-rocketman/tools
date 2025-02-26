@@ -1,0 +1,23 @@
+tool:
+  name: Update User Info
+  version: 1.0.0
+  summary: ''
+  post_setup: ''
+  overview: ''
+  features: []
+steps:
+  - id: step-1
+    name: API Roles and Clients
+    module: api-roles-clients/create
+    properties:
+      name: Update User Info
+      privileges:
+        - all
+    depends_on: []
+  - id: step-2
+    name: Policy
+    module: policy/create
+    properties:
+      xml: ''
+    depends_on:
+      - step-1
