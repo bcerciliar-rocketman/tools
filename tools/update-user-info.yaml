@@ -204,8 +204,52 @@ steps:
     name: Add JSON Schema
     module: osx-configuration-profiles/acs-external-applications
     properties:
-      schema: ''
-      profile: ''
-      custom_domain: ''
+      schema: |-
+        {
+          "title": "Update User Info",
+          "description": "Commands update user info script.",
+          "properties": {
+            "server": {
+              "title": "Server",
+              "description": "Specifies the type of directory server for username lookup.",
+              "property_order": 3,
+              "type": "string",
+              "options": {
+                "enum_titles": [
+                  "LDAP",
+                  "Cloud Identity Provider",
+                  "Both"
+                ]
+              },
+              "enum": [
+                "ldap",
+                "idp",
+                "both"
+              ]
+            },
+            "domains": {
+              "title": "Domains",
+              "description": "List of domain(s) to append to the end of the username. This is necessary because sometimes the username is something like chris@roketman.tech instead of just chris. We need multiple domains because sometimes companies have more than one domain. Ex: --domains @abcd.com @xyz.net",
+              "property_order": 4,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "title": "Domain"
+              }
+            },
+            "ignore": {
+              "title": "Ignore",
+              "description": "List of local user accounts to ignore if they are logged in as them like backdoor admin",
+              "property_order": 5,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "title": "Ignore"
+              }
+            }
+          }
+        }
+      profile: ${{profile.name}}
+      custom_domain: tech.rocketman.updateuserinfo
     depends_on:
       - step-3
