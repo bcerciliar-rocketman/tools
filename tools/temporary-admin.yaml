@@ -13,6 +13,12 @@ tool:
     - Passwords are easily retrievable through Jamf Pro
     - Easily create, migrate, and change the backdoor admin password
     - Customize the username, full name, and visibility of the admin account
+  post_setup: >-
+    This tool can be configured many ways, and the current configuration is
+    meant to be completed On Request. Scope any devices you want to have access
+    to this tool in Self Service to the Static Group below. Once they run the
+    tool, the device will be removed from that group so they can only run it
+    once. Configure the tool using the Configuration Profile below.  
 steps:
   - id: group
     name: Create Static Group
