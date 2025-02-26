@@ -12,6 +12,9 @@ tool:
     interface that presents a single consolidated prompt for all apps listed in
     the --appNames parameter, monitors their status, and updates the display
     dynamically.
+
+
+    Version 2
   features:
     - Guides the user for enabling Screen Recording
     - Allows you to define multiple applications
@@ -20,6 +23,9 @@ tool:
   post_setup: >-
     Configure the Configuration Profile, and then scope the Policy and
     Configuration Profile to the computers you would like to target. 
+
+
+    Version 2
 steps:
   - id: profile
     name: App Setup Helper Configurations
