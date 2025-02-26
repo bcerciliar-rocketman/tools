@@ -47,17 +47,19 @@ steps:
               "title": "Dialog Title",
               "description": "The Title in the window that the user sees",
               "property_order": 2,
-              "type": "string"
+              "type": "string",
+              "default": "Enable Screen Recording for Apps"
             },
             "message": {
               "title": "Dialog Message",
               "description": "The body text of the dialog window",
               "property_order": 3,
-              "type": "string"
+              "type": "string",
+              "default": "Screen sharing needs to be enabled for the following application(s)."
             },
             "icon": {
               "title": "Dialog Icon Path",
-              "description": "Full path to the icon added to the window",
+              "description": "Full path to the icon added to the window. Typically this is your company logo.",
               "property_order": 4,
               "type": "string"
             },
@@ -65,25 +67,22 @@ steps:
               "title": "Dialog Width",
               "description": "Width of dialog box",
               "property_order": 5,
-              "type": "string"
+              "type": "integer",
+              "default": "700"
             },
             "height": {
               "title": "Dialog Height",
               "description": "Height of dialog box",
               "property_order": 6,
-              "type": "string"
+              "type": "integer",
+              "default": "400"
             },
             "timeout": {
               "title": "Dialog Timeout",
               "description": "Time in seconds to wait for the user to enable screen recording before timing out.",
               "property_order": 7,
-              "type": "integer"
-            },
-            "domain": {
-              "title": "Domain",
-              "description": "Domain for options set in local or managed plists.",
-              "property_order": 8,
-              "type": "string"
+              "type": "integer",
+              "default": "300"
             }
           }
         }
@@ -91,12 +90,6 @@ steps:
       custom_domain: tech.rocketman.appsetuphelper
     depends_on:
       - profile
-  - id: group
-    name: Create Group
-    module: static-groups/create
-    properties:
-      name: App Setup Helper
-    depends_on: []
   - id: step-3
     name: App Setup Helper Deployment
     module: policy/create
@@ -114,13 +107,13 @@ steps:
             <trigger_network_state_changed>false</trigger_network_state_changed>
             <trigger_startup>false</trigger_startup>
             <trigger_other/>
-            <frequency>Ongoing</frequency>
+            <frequency>Once</frequency>
             <retry_event>none</retry_event>
             <retry_attempts>-1</retry_attempts>
             <notify_on_each_failed_retry>false</notify_on_each_failed_retry>
             <location_user_only>false</location_user_only>
             <target_drive>/</target_drive>
-            <offline>true</offline>
+            <offline>false</offline>
             <date_time_limitations>
               <activation_date/>
               <activation_date_epoch>0</activation_date_epoch>
@@ -280,5 +273,4 @@ steps:
             <action>none</action>
           </disk_encryption>
         </policy>
-    depends_on:
-      - group
+    depends_on: []
