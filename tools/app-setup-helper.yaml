@@ -12,7 +12,11 @@ tool:
     interface that presents a single consolidated prompt for all apps listed in
     the --appNames parameter, monitors their status, and updates the display
     dynamically.
-  features: []
+  features:
+    - Guides the user for enabling Screen Recording
+    - Allows you to define multiple applications
+    - Customized branding and messaging
+    - Allows you to set a timeout
 steps:
   - id: profile
     name: App Setup Helper Configurations
