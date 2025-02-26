@@ -200,3 +200,12 @@ steps:
     properties:
       name: Update User Info
     depends_on: []
+  - id: step-4
+    name: Add JSON Schema
+    module: osx-configuration-profiles/acs-external-applications
+    properties:
+      schema: ''
+      profile: ''
+      custom_domain: ''
+    depends_on:
+      - step-3
