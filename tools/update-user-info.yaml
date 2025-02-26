@@ -100,19 +100,6 @@ steps:
                     <ibeacons/>
                 </exclusions>
             </scope>
-            <self_service>
-                <use_for_self_service>true</use_for_self_service>
-                <self_service_display_name>Temporary Admin</self_service_display_name>
-                <install_button_text>Promote</install_button_text>
-                <reinstall_button_text>Promote</reinstall_button_text>
-                <self_service_description/>
-                <force_users_to_view_description>false</force_users_to_view_description>
-                <feature_on_main_page>true</feature_on_main_page>
-                <notification>false</notification>
-                <notification_type>Self Service</notification_type>
-                <notification_subject>Temporary Admin</notification_subject>
-                <notification_message/>
-            </self_service>
             <package_configuration>
                 <packages>
                     <size>0</size>
@@ -128,7 +115,7 @@ steps:
                     <parameter4>UpdateUserInfo</parameter4>
                     <parameter5>--clientId ${{api.client_id}}</parameter5>
                     <parameter6>--clientSecret ${{api.client_secret}}</parameter6>
-                    <parameter7>--domain tech.rocketman.tempadmin.${{sys.execution_id}}</parameter7>
+                    <parameter7>--domain tech.rocketman.updateuserinfo.${{sys.execution_id}}</parameter7>
                     <parameter8/>
                     <parameter9/>
                     <parameter10/>
