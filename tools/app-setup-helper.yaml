@@ -12,26 +12,20 @@ tool:
     interface that presents a single consolidated prompt for all apps listed in
     the --appNames parameter, monitors their status, and updates the display
     dynamically.
-
-
-    Version 2
   features:
     - Guides the user for enabling Screen Recording
     - Allows you to define multiple applications
     - Customized branding and messaging
     - Allows you to set a timeout
   post_setup: >-
-    Configure the Configuration Profile, and then scope the Policy and
-    Configuration Profile to the computers you would like to target. 
-
-
-    Version 2
+    Configure the Configuration Profile with the Apps you would like to target,
+    then scope the Policy to the computers you would like it to run on. 
 steps:
   - id: profile
     name: App Setup Helper Configurations
     module: osx-configuration-profiles/create
     properties:
-      name: App Setup Helper Configurations ${{sys.execution_id}}
+      name: App Setup Helper Configurations
     depends_on: []
   - id: step-2
     name: Custom Schema
