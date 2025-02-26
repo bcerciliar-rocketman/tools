@@ -1,21 +1,29 @@
 tool:
   name: Update User Info
-  version: 1.0.0
-  summary: ''
-  post_setup: ''
-  overview: ''
-  features: []
+  version: 2025.2.4
+  summary: Adds the logged in username to Jamf Pro
+  post_setup: Configure the Configuration Profile and scope the Policy
+  overview: >-
+    The Update User Info tool identifies and validates the correct username of
+    the currently logged-in user, leveraging various directory integrations
+    (LDAP and Cloud Identity Providers) associated with Jamf Pro. Once a match
+    is confirmed, this information is sent to Jamf Pro to ensure accurate user
+    data within the system.
+  features:
+    - Guesses the username based on a number of variables
+    - Ability to define multiple domains
+    - Validates using LDAP or Cloud Identity Provider Integration
 steps:
-  - id: step-1
+  - id: api
     name: API Roles and Clients
     module: api-roles-clients/create
     properties:
-      name: Update User Info
+      name: RCC-Update User Info
       privileges:
         - all
     depends_on: []
-  - id: step-2
-    name: Policy
+  - id: policy
+    name: Create Policy
     module: policy/create
     properties:
       xml: |
@@ -31,7 +39,7 @@ steps:
                 <trigger_network_state_changed>false</trigger_network_state_changed>
                 <trigger_startup>false</trigger_startup>
                 <trigger_other/>
-                <frequency>Once per computer</frequency>
+                <frequency>Ongoing</frequency>
                 <retry_event>none</retry_event>
                 <retry_attempts>-1</retry_attempts>
                 <notify_on_each_failed_retry>false</notify_on_each_failed_retry>
@@ -193,14 +201,14 @@ steps:
             </disk_encryption>
         </policy>
     depends_on:
-      - step-1
-  - id: step-3
+      - api
+  - id: profile
     name: Configuration Profile
     module: osx-configuration-profiles/create
     properties:
-      name: Update User Info
+      name: RCC-Update User Info
     depends_on: []
-  - id: step-4
+  - id: profile-external
     name: Add JSON Schema
     module: osx-configuration-profiles/acs-external-applications
     properties:
@@ -252,4 +260,4 @@ steps:
       profile: ${{profile.name}}
       custom_domain: tech.rocketman.updateuserinfo
     depends_on:
-      - step-3
+      - profile
