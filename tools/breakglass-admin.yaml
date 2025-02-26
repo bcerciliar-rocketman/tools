@@ -2,7 +2,11 @@ tool:
   name: BreakGlass Admin
   version: 1.0.0
   summary: Creates and manages a hidden admin account with a rotating password
-  overview: Like LAPS but better!
+  overview: >-
+    The Break Glass Admin tool creates or manages a backdoor administrator
+    account with a customizable, secure password. It supports both static and
+    randomized password generation methods and is designed for emergency access
+    to user devices.
   features:
     - password
     - hidden
@@ -20,35 +24,24 @@ steps:
     properties:
       schema: |-
         {
-          "title": "Break Glass Admin (tech.rocketman.breakglass.${{sys.execution_id}})",
-          "description": "Commands to creates a backdoor admin account with a randomized (or static) password, storing that password in an extension attribute in Jamf Pro.",
+          "title": "Break Glass Admin (tech.rocketman.breakglass)",
+          "description": "Commands to create a backdoor admin account with a randomized (or static) password, storing that password in an extension attribute in Jamf Pro.",
           "properties": {
-            "clientId": {
-              "title": "Client ID",
-              "description": "Jamf API Client ID",
-              "property_order": 1,
-              "type": "string"
-            },
-            "clientSecret": {
-              "title": "Client Secret",
-              "description": "Jamf API Client Secret",
-              "property_order": 2,
-              "type": "string"
-            },
             "passMethod": {
               "title": "Password Method",
               "description": "Defines the type of randomized password.",
-              "property_order": 3,
+              "property_order": 1,
               "type": "string",
+              "default": "nato",
               "options": {
                 "enum_titles": [
                   "NATO - Combines words from the NATO phonetic alphabet",
                   "XKCD - Using the system from the XKCD webcomic",
-                  "NAMES - Same as above but only with the propernames database",
+                  "NAMES - Same as above but only with the proper names database",
                   "WOPR - Like the launch codes in the 80s movie, 'Wargames'",
                   "PSEUDO RANDOM - Based on University of Nebraska' LAPS system",
                   "STATIC - Allows the admin to define a static password for the computer.",
-                  "CUSTOM - Customizable format with the following defaults. 16 characters, 1 upper, 1 lower, 1 digit and 1 special character"
+                  "CUSTOM - Customizable format with the following defaults. 16 characters, 1 upper, 1 lower, 1 digit, and 1 special character"
                 ]
               },
               "enum": [
@@ -64,109 +57,122 @@ steps:
             "shortName": {
               "title": "Short Name",
               "description": "The username of the local account created.",
-              "property_order": 4,
-              "type": "string"
+              "property_order": 2,
+              "type": "string",
+              "default": "breakglass"
             },
             "fullName": {
               "title": "Full Name",
               "description": "The full name of the local account created.",
-              "property_order": 5,
-              "type": "string"
-            },
-            "storage": {
-              "title": "Storage",
-              "description": "The place that the password is stored [local|remote|both].",
-              "property_order": 6,
+              "property_order": 3,
               "type": "string",
-              "options": {
-                "enum_titles": [
-                  "LOCAL - Stores the password in a hidden, locked file on the user's computer",
-                  "REMOTE - Stores the password in an Extension Attribute in Jamf Pro",
-                  "BOTH - Stores the password in both places (belt with suspenders)"
-                ]
-              },
-              "enum": [
-                "local",
-                "remote",
-                "both"
-              ]
-            },
-            "extAttr": {
-              "title": "Extension Attribute",
-              "description": "The name of the extension attribute where the password is stored.",
-              "property_order": 7,
-              "type": "string",
-              "default": "Break Glass Admin Password${{sys.execution_id}}"
+              "default": "Break Glass Admin"
             },
             "adminVisible": {
               "title": "Admin Visible",
-              "description": "Whether the account is hidden or visable",
-              "property_order": 8,
-              "type": "boolean"
-            },
-            "defaultPass": {
-              "title": "Default Passwords",
-              "description": "Used when the account already exists and we want a 'default password' to try if nothing is stored within the extension attribute in Jamf Pro.",
-              "property_order": 9,
-              "type": "array",
-              "items": {
-                "type": "string",
-                "title": "Password"
-              }
-            },
-            "keyChain": {
-              "title": "KeyChain",
-              "description": "Path to the user's keychain.",
-              "property_order": 10,
-              "type": "string"
+              "description": "Whether the account is hidden or visible",
+              "property_order": 4,
+              "type": "boolean",
+              "default": "false"
             },
             "num": {
               "title": "Number of Words",
               "description": "The number of words, or characters, used in the password method",
-              "property_order": 11,
-              "type": "integer"
+              "property_order": 5,
+              "type": "integer",
+              "default": "4"
             },
             "force": {
               "title": "Force",
               "description": "If it doesn't have a password stored, or the password doesn't work, it will delete the account and create a new one.",
-              "property_order": 12,
+              "property_order": 6,
               "type": "boolean"
             },
             "staticPassword": {
               "title": "Static Password",
               "description": "Used in conjunction with the static password method. Defines the password that will be used.",
-              "property_order": 13,
+              "property_order": 7,
               "type": "string"
             },
-            "minLower": {
-              "title": "Minimum lower number",
-              "description": "Represent the MINIMUM number of lower characters. These four are only needed for the custom method.",
-              "property_order": 14,
-              "type": "integer"
+            "customPassMethod": {
+              "title": "Custom Password Method",
+              "description": "Additional options for customizing the password format.",
+              "property_order": 8,
+              "type": "object",
+              "properties": {
+                "minLower": {
+                  "title": "Minimum Lowercase Letters",
+                  "description": "Minimum number of lowercase characters required.",
+                  "property_order": 1,
+                  "type": "integer"
+                },
+                "minUpper": {
+                  "title": "Minimum Uppercase Letters",
+                  "description": "Minimum number of uppercase characters required.",
+                  "property_order": 2,
+                  "type": "integer"
+                },
+                "minDigit": {
+                  "title": "Minimum Digits",
+                  "description": "Minimum number of digits required.",
+                  "property_order": 3,
+                  "type": "integer"
+                },
+                "minSpecial": {
+                  "title": "Minimum Special Characters",
+                  "description": "Minimum number of special characters required.",
+                  "property_order": 4,
+                  "type": "integer"
+                }
+              }
             },
-            "minUpper": {
-              "title": "Minimum upper number",
-              "description": "Represent the MINIMUM number of upper characters. These four are only needed for the custom method.",
-              "property_order": 15,
-              "type": "integer"
-            },
-            "minDigit": {
-              "title": "Minimum digit number",
-              "description": "Represent the MINIMUM number of digit. These four are only needed for the custom method.",
-              "property_order": 16,
-              "type": "integer"
-            },
-            "minSpecial": {
-              "title": "Minimum special number",
-              "description": "Represent the MINIMUM number of special characters. These four are only needed for the custom method.",
-              "property_order": 17,
-              "type": "integer"
-            },
-            "domain": {
-              "title": "Domain",
-              "description": "Domain for options set in local or managed plists.",
-              "property_order": 18,
-              "type": "string"
+            "advancedOptions": {
+              "title": "Advanced Options",
+              "description": "These are advanced options that should be used with caution. Make sure you read the documentation before setting these preferences!",
+              "property_order": 9,
+              "type": "object",
+              "properties": {
+                "keyChain": {
+                  "title": "KeyChain",
+                  "description": "Path to the user's keychain.",
+                  "property_order": 1,
+                  "type": "string"
+                },
+                "storage": {
+                  "title": "Storage",
+                  "description": "The place that the password is stored [local|remote|both].",
+                  "property_order": 2,
+                  "type": "string",
+                  "options": {
+                    "enum_titles": [
+                      "LOCAL - Stores the password in a hidden, locked file on the user's computer",
+                      "REMOTE - Stores the password in an Extension Attribute in Jamf Pro",
+                      "BOTH - Stores the password in both places (belt with suspenders)"
+                    ]
+                  },
+                  "enum": [
+                    "local",
+                    "remote",
+                    "both"
+                  ]
+                },
+                "extAttr": {
+                  "title": "Extension Attribute",
+                  "description": "The name of the extension attribute where the password is stored.",
+                  "property_order": 3,
+                  "type": "string"
+                },
+                "defaultPass": {
+                  "title": "Default Passwords",
+                  "description": "Used when the account already exists and we want a 'default password' to try if nothing is stored within the extension attribute in Jamf Pro.",
+                  "property_order": 4,
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "title": "Password"
+                  }
+                }
+              }
             }
           }
         }
@@ -174,20 +180,6 @@ steps:
       custom_domain: tech.rocketman.breakglass
     depends_on:
       - profile
-  - id: group
-    name: Computer Group
-    module: static-groups/create
-    properties:
-      name: Break Glass Admin
-    depends_on: []
-  - id: api
-    name: Api
-    module: api-roles-clients/create
-    properties:
-      name: Break Glass Admin
-      privileges:
-        - all
-    depends_on: []
   - id: policy
     name: Policy
     module: policy/create
@@ -205,7 +197,7 @@ steps:
                 <trigger_network_state_changed>false</trigger_network_state_changed>
                 <trigger_startup>false</trigger_startup>
                 <trigger_other/>
-                <frequency>Once every month</frequency>
+                <frequency>Once every week</frequency>
                 <retry_event>none</retry_event>
                 <retry_attempts>-1</retry_attempts>
                 <notify_on_each_failed_retry>false</notify_on_each_failed_retry>
@@ -247,12 +239,7 @@ steps:
             <scope>
                 <all_computers>false</all_computers>
                 <computers/>
-                <computer_groups>
-                  <computer_group>
-                    <id>${{group.id}}</id>
-                    <name>${{group.name}}</name>
-                  </computer_group>
-                </computer_groups>
+                <computer_groups/>
                 <buildings/>
                 <departments/>
                 <limit_to_users>
@@ -377,9 +364,7 @@ steps:
                 <action>none</action>
             </disk_encryption>
         </policy>
-    depends_on:
-      - group
-      - api
+    depends_on: []
   - id: ea
     name: Extension Attributes
     module: extension-attributes/create
