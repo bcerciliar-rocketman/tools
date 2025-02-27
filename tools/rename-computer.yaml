@@ -2,7 +2,13 @@ tool:
   name: Rename Computer
   version: 1.0.0
   summary: Programmatically Rename's macOS Computers
-  post_setup: Test3
+  post_setup: >-
+    Scope the Policy to computers you would like to target
+
+    Configure the Configuration Profile with the naming scheme you prefer
+
+    For more information on configuring this tool, visit
+    https://github.com/rcc-rocketman/rcc-beta/wiki/Rename-Computer
   overview: >-
     The Rename Computer tool programmatically renames macOS computers based on a
     customizable naming scheme. This tool retrieves system and configuration
