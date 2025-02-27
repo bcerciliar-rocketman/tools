@@ -12,8 +12,136 @@ tool:
   features: []
 steps:
   - id: profile
-    name: Create Configuration Profile
+    name: User Privilege Management Preferences
     module: osx-configuration-profiles/create
     properties:
-      name: RCC - User Privalege Management -
+      name: RCC - User Privilege Management Preferences
+    depends_on: []
+  - id: schema
+    name: User Privilege Management - Schema
+    module: osx-configuration-profiles/acs-external-applications
+    properties:
+      schema: |-
+        {
+          "title": "User Privilege Management (tech.rocketman.userprivilegemanagement)",
+          "description": "Commands to demote admin users to standard users.",
+          "properties": {
+            "action": {
+              "title": "Action",
+              "description": "Specifies the action to perform. Use promote to elevate a user to admin and demote to reduce a user to standard.",
+              "property_order": 1,
+              "type": "string",
+              "options": {
+                "enum_titles": [
+                  "Promote",
+                  "Demote"
+                ]
+              },
+              "enum": [
+                "promote",
+                "demote"
+              ]
+            },
+            "username": {
+              "title": "Username",
+              "description": "Defines the target user for the action. If not specified, the tool will target the currently logged-in user.",
+              "property_order": 2,
+              "type": "string"
+            },
+            "excludes": {
+              "title": "Excludes",
+              "description": "Lists users to exclude from the action. This is useful for ensuring that special accounts, like a 'backdoor admin,' are not affected when the target is the currently logged-in user.",
+              "property_order": 3,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "title": "Excluded"
+              }
+            },
+            "domain": {
+              "title": "Domain",
+              "description": "Domain for options set in local or managed plists.",
+              "property_order": 4,
+              "type": "string"
+            }
+          }
+        }
+      profile: ${{profile.name}}
+      custom_domain: tech.rocketman.userprivilegemanagement
+    depends_on:
+      - profile
+  - id: policy
+    name: Policy
+    module: policy/create
+    properties:
+      xml: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <policy>
+            <general>
+                <name>RCC - User Privilege Management - ${{sys.execution_id}}</name>
+                <enabled>true</enabled>
+                <trigger>USER_INITIATED</trigger>
+                <trigger_checkin>true</trigger_checkin>
+                <trigger_enrollment_complete>false</trigger_enrollment_complete>
+                <trigger_login>false</trigger_login>
+                <trigger_network_state_changed>false</trigger_network_state_changed>
+                <trigger_startup>false</trigger_startup>
+                <trigger_other/>
+                <frequency>Once per computer</frequency>
+            </general>
+            <scope>
+                <all_computers>false</all_computers>
+                <computers/>
+                <computer_groups/>
+                <buildings/>
+                <departments/>
+                <limit_to_users>
+                    <user_groups/>
+                </limit_to_users>
+                <limitations>
+                    <users/>
+                    <user_groups/>
+                    <network_segments/>
+                    <ibeacons/>
+                </limitations>
+                <exclusions>
+                    <computers/>
+                    <computer_groups/>
+                    <buildings/>
+                    <departments/>
+                    <users/>
+                    <user_groups/>
+                    <network_segments/>
+                    <ibeacons/>
+                </exclusions>
+            </scope>
+            <package_configuration>
+                <packages>
+                    <size>0</size>
+                </packages>
+                <distribution_point>default</distribution_point>
+            </package_configuration>
+            <scripts>
+                <size>1</size>
+                <script>
+                    <id>${{sys.rcc_script_id}}</id>
+                    <name>Rocketman Command Center: Launch a Tool from RCC Pro</name>
+                    <priority>After</priority>
+                    <parameter4>UserPrivilegeManagement</parameter4>
+                    <parameter5/>
+                    <parameter6/>
+                    <parameter7/>
+                    <parameter8/>
+                    <parameter9/>
+                    <parameter10/>
+                    <parameter11/>
+                </script>
+            </scripts>
+            <maintenance>
+                <recon>false</recon>
+            </maintenance>
+            <files_processes>
+                <run_command/>
+            </files_processes>
+        </policy>
     depends_on: []
