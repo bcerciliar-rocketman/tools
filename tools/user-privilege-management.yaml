@@ -1,0 +1,19 @@
+tool:
+  name: User Privilege Management
+  version: 1.0.0
+  summary: Promotes users to Admin and demotes them to Standard
+  post_setup: ''
+  overview: >-
+    The User Privilege Management tool provides control over user privileges on
+    macOS devices. It enables administrators to promote a standard user to an
+    admin or demote an admin to a standard user. This tool allows targeting of
+    specific user accounts and the exclusion of others, providing flexibility
+    and precise control over account privileges.
+  features: []
+steps:
+  - id: profile
+    name: Create Configuration Profile
+    module: osx-configuration-profiles/create
+    properties:
+      name: RCC - User Privalege Management -
+    depends_on: []
