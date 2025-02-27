@@ -76,7 +76,7 @@ steps:
         <?xml version="1.0" encoding="UTF-8"?>
         <policy>
             <general>
-                <name>Rename Computer ${{sys.execution_id}}</name>
+                <name>RCC - Rename Computer - ${{sys.execution_id}}</name>
                 <enabled>true</enabled>
                 <trigger>CHECKIN</trigger>
                 <trigger_checkin>true</trigger_checkin>
