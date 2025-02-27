@@ -25,10 +25,10 @@ steps:
     name: Create Configuration Profile
     module: osx-configuration-profiles/create
     properties:
-      name: App Setup Helper Configurations
+      name: 'RCC | App Setup Helper Configurations | '
     depends_on: []
-  - id: step-2
-    name: Custom Schema
+  - id: json
+    name: Add JSON Schema
     module: osx-configuration-profiles/acs-external-applications
     properties:
       schema: |-
@@ -94,14 +94,14 @@ steps:
     depends_on:
       - profile
   - id: step-3
-    name: App Setup Helper Deployment
+    name: Create Policy
     module: policy/create
     properties:
       xml: |
         <?xml version="1.0" encoding="UTF-8"?>
         <policy>
           <general>
-            <name>App Setup Helper ${{sys.execution_id}}</name>
+            <name>RCC | App Setup Helper | ${{sys.execution_id}}</name>
             <enabled>true</enabled>
             <trigger>USER_INITIATED</trigger>
             <trigger_checkin>true</trigger_checkin>
