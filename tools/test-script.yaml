@@ -1,0 +1,30 @@
+tool:
+  name: Test Script
+  version: 1.0.0
+  summary: Test Script
+  post_setup: Test Script
+  overview: Test Script
+  features:
+    - Test Script
+steps:
+  - id: step-1
+    name: Script
+    module: script/create
+    properties:
+      name: ""
+      info: ""
+      notes: ""
+      priority: ""
+      category_id: ""
+      category_name: ""
+      parameter4: ""
+      parameter5: ""
+      parameter6: ""
+      parameter7: ""
+      parameter8: ""
+      parameter9: ""
+      parameter10: ""
+      parameter11: ""
+      os_requirements: ""
+      script_contents: ""
+    depends_on: []
