@@ -25,7 +25,7 @@ steps:
     name: Create Configuration Profile
     module: osx-configuration-profiles/create
     properties:
-      name: 'RCC | App Setup Helper Configurations | '
+      name: 'RCC - App Setup Helper Configurations - '
     depends_on: []
   - id: json
     name: Add JSON Schema
@@ -101,7 +101,7 @@ steps:
         <?xml version="1.0" encoding="UTF-8"?>
         <policy>
           <general>
-            <name>RCC | App Setup Helper | ${{sys.execution_id}}</name>
+            <name>RCC - App Setup Helper - ${{sys.execution_id}}</name>
             <enabled>true</enabled>
             <trigger>USER_INITIATED</trigger>
             <trigger_checkin>true</trigger_checkin>
