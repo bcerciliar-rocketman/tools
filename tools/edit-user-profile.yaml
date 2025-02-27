@@ -94,7 +94,8 @@ steps:
     properties:
       name: RCC - Edit User Profile
       privileges:
-        - all
+        - Read Buildings
+        - Read Departments
     depends_on: []
   - id: policy
     name: Create Policy
@@ -161,8 +162,8 @@ steps:
                     <priority>After</priority>
                     <parameter4>Rename Computer</parameter4>
                     <parameter5>--domain tech.rocketman.selectBuildingAndOrDepartments.${{sys.execution_id}}</parameter5>
-                    <parameter6/>
-                    <parameter7/>
+                    <parameter6>--clientId ${{api.client_id}}</parameter6>
+                    <parameter7>--clientSecret ${{api.client_secret}}</parameter7>
                     <parameter8/>
                     <parameter9/>
                     <parameter10/>
