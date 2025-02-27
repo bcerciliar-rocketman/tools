@@ -10,9 +10,10 @@ steps:
   - id: step-1
     name: Create Package
     module: package/create
-    properties:      
-      package_name: "Test"
-      file_name: "Test.pkg"
+    properties:
+      href: "https://github.com/macadmins/escrow-buddy/releases/download/v1.0.0/Escrow.Buddy-1.0.0.pkg"
+      package_name: "RCC Pro - Escrow Package - "
+      file_name: "Escrow.Buddy-1.0.0.pkg"
       category_id: "-1"
       info: "Test package information"
       notes: "Installation notes for the package"
