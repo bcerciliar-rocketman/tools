@@ -8,6 +8,9 @@ tool:
     department, or both, based on the information available in Jamf Pro. This
     tool simplifies the configuration process by presenting users with a dialog
     box to make their selections, which are then updated in Jamf Pro.
+
+
+    Test1
   features:
     - >-
       Retrieve available buildings and/or departments from Jamf Pro using the
