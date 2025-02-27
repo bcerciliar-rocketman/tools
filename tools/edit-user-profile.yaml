@@ -1,0 +1,23 @@
+tool:
+  name: Edit User Profile
+  version: 1.0.0
+  summary: Updates building and department info.
+  post_setup: ''
+  overview: >-
+    The Edit User Profile tool facilitates user selection of a building,
+    department, or both, based on the information available in Jamf Pro. This
+    tool simplifies the configuration process by presenting users with a dialog
+    box to make their selections, which are then updated in Jamf Pro.
+  features:
+    - >-
+      Retrieve available buildings and/or departments from Jamf Pro using the
+      provided API credentials.
+    - Display a dialog box prompting the user to select from the options.
+    - Update the user's building and department information in Jamf Pro.
+steps:
+  - id: profile
+    name: Create Configuration Profile
+    module: osx-configuration-profiles/create
+    properties:
+      name: RCC - Edit User Profile Configurations
+    depends_on: []
