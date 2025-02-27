@@ -1,0 +1,23 @@
+tool:
+  name: Upload Jamf Logs
+  version: 1.0.0
+  summary: Uploads specified Logs to Specified Locations
+  post_setup: ''
+  overview: >-
+    The Upload Jamf Logs tool supports multiple upload destinations for
+    specified files, such as log files.
+
+    The tool handles multiple files or directories by automatically compressing
+    them into a single zip file before upload if needed. It also enforces file
+    size limits to prevent oversized uploads.
+  features:
+    - Upload Logs to AWS S3, GCS, or SharePoint
+    - Define multiple logs to upload
+    - Define a maximum file size
+steps:
+  - id: profile
+    name: Create Configuration Profile
+    module: osx-configuration-profiles/create
+    properties:
+      name: 'RRC - Upload Jamf Logs - '
+    depends_on: []
