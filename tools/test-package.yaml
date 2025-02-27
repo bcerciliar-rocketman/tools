@@ -9,8 +9,8 @@ tool:
 steps:
   - id: step-1
     name: Create Package
-    module: api-roles-clients/create
+    module: package/create
     properties:
-      name: ''
+      name: 'Test'
       privileges: []
     depends_on: []
