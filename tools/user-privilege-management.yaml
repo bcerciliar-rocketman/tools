@@ -15,7 +15,7 @@ steps:
     name: User Privilege Management Preferences
     module: osx-configuration-profiles/create
     properties:
-      name: RCC - User Privilege Management Preferences
+      name: 'RCC - User Privilege Management Preferences - '
     depends_on: []
   - id: schema
     name: User Privilege Management - Schema
@@ -23,7 +23,7 @@ steps:
     properties:
       schema: |-
         {
-          "title": "User Privilege Management (tech.rocketman.userprivilegemanagement)",
+          "title": "User Privilege Management",
           "description": "Commands to demote admin users to standard users.",
           "properties": {
             "action": {
@@ -80,7 +80,7 @@ steps:
             <general>
                 <name>RCC - User Privilege Management - ${{sys.execution_id}}</name>
                 <enabled>true</enabled>
-                <trigger>USER_INITIATED</trigger>
+                <trigger>CHECKIN</trigger>
                 <trigger_checkin>true</trigger_checkin>
                 <trigger_enrollment_complete>false</trigger_enrollment_complete>
                 <trigger_login>false</trigger_login>
@@ -128,7 +128,7 @@ steps:
                     <name>Rocketman Command Center: Launch a Tool from RCC Pro</name>
                     <priority>After</priority>
                     <parameter4>UserPrivilegeManagement</parameter4>
-                    <parameter5/>
+                    <parameter5>--domain tech.rocketman.userprivilegemanagement.${{sys.execution_id}}</parameter5>
                     <parameter6/>
                     <parameter7/>
                     <parameter8/>
