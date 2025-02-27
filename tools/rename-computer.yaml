@@ -2,7 +2,7 @@ tool:
   name: Rename Computer
   version: 1.0.0
   summary: Programmatically Rename's macOS Computers
-  post_setup: ''
+  post_setup: Test
   overview: >-
     The Rename Computer tool programmatically renames macOS computers based on a
     customizable naming scheme. This tool retrieves system and configuration
@@ -14,7 +14,6 @@ tool:
     - Ability to truncate variable output
     - Substitute variables for different strings
     - Utilize complex characteristics to get the naming scheme you desire!
-    - Test
 steps:
   - id: profile-preferences
     name: Create Preferences Configuration Profile
@@ -80,7 +79,7 @@ steps:
                 <trigger_network_state_changed>false</trigger_network_state_changed>
                 <trigger_startup>false</trigger_startup>
                 <trigger_other/>
-                <frequency>Ongoing</frequency>
+                <frequency>Once per computer</frequency>
                 <retry_event>none</retry_event>
                 <retry_attempts>-1</retry_attempts>
                 <notify_on_each_failed_retry>false</notify_on_each_failed_retry>
