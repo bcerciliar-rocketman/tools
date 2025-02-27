@@ -8,9 +8,12 @@ tool:
     randomized password generation methods and is designed for emergency access
     to user devices.
   features:
-    - password
-    - hidden
-    - readable
+    - Unique Randomized Password for Each Ccomputer
+    - Set multiple randomized password types
+  post_setup: |-
+    Configure the Configuration Profile
+    Scope the Policy
+    Retrieve the Password for each computer from the Extension Attribute
 steps:
   - id: profile
     name: Break Glass Admin Preferences
