@@ -21,7 +21,7 @@ steps:
     name: API Roles and Clients
     module: api-roles-clients/create
     properties:
-      name: RCC-Update User Info
+      name: 'RCC - Update User Info - '
       privileges:
         - Read LDAP Servers
         - Update LDAP Servers
@@ -35,7 +35,7 @@ steps:
         <?xml version="1.0" encoding="UTF-8"?>
         <policy>
             <general>
-                <name>Update User Info ${{sys.execution_id}}</name>
+                <name>RCC - Update User Info - ${{sys.execution_id}}</name>
                 <enabled>true</enabled>
                 <trigger>USER_INITIATED</trigger>
                 <trigger_checkin>false</trigger_checkin>
@@ -198,7 +198,7 @@ steps:
     name: Configuration Profile
     module: osx-configuration-profiles/create
     properties:
-      name: RCC-Update User Info
+      name: 'RCC - Update User Info Configuration - '
     depends_on: []
   - id: profile-external
     name: Add JSON Schema
