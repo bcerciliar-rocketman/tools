@@ -1,5 +1,5 @@
 tool:
-  name: BreakGlass Admin
+  name: Break Glass Admin
   version: 1.0.0
   summary: Creates and manages a hidden admin account with a rotating password
   overview: >-
@@ -8,18 +8,22 @@ tool:
     randomized password generation methods and is designed for emergency access
     to user devices.
   features:
-    - Unique Randomized Password for Each Ccomputer
+    - Unique Randomized Password for Each Computer
     - Set multiple randomized password types
-  post_setup: |-
-    Configure the Configuration Profile
-    Scope the Policy
-    Retrieve the Password for each computer from the Extension Attribute
+    - Ability to set length, minimum character types, and many other options
+  post_setup: >-
+    - Configure the Configuration Profile
+
+    - Scope the Policy
+
+    - Once deployed, you can retrieve the Password for each computer from the
+    Extension Attribute
 steps:
   - id: profile
     name: Break Glass Admin Preferences
     module: osx-configuration-profiles/create
     properties:
-      name: Break Glass Admin Preferences
+      name: 'RCC | Break Glass Admin Preferences | '
     depends_on: []
   - id: step-2
     name: Break Glass Admin Preferences - Schema
@@ -191,7 +195,7 @@ steps:
         <?xml version="1.0" encoding="UTF-8"?>
         <policy>
             <general>
-                <name>Break Glass Admin ${{sys.execution_id}}</name>
+                <name>RCC | Break Glass Admin | ${{sys.execution_id}}</name>
                 <enabled>true</enabled>
                 <trigger>CHECKIN</trigger>
                 <trigger_checkin>true</trigger_checkin>
@@ -357,7 +361,7 @@ steps:
     name: Extension Attributes
     module: extension-attributes/create
     properties:
-      name: Break Glass Admin Password
+      name: 'RCC | Break Glass Admin Password | '
       description: This script will retrieve the Backdoor Admin Password
       data_type: STRING
       inventory_display_type: EXTENSION_ATTRIBUTES
