@@ -16,13 +16,13 @@ tool:
     Configure any backdoor admin accounts to ignore in the Configuration
     Profile, and scope this profile to any devices that you choose!
 steps:
-  - id: step-1
+  - id: profile
     name: Create Configuration Profile
     module: osx-configuration-profiles/create
     properties:
-      name: RCC - Reset Jamf Connect Login Screen ${{sys.execution_id}}
+      name: 'RCC - Reset Jamf Connect Login Screen - '
     depends_on: []
-  - id: step-2
+  - id: json
     name: Add JSON Schema
     module: osx-configuration-profiles/acs-external-applications
     properties:
@@ -43,11 +43,11 @@ steps:
             }
           }
         }
-      profile: ${{step-1.name}}
+      profile: ${{profile.name}}
       custom_domain: tech.rocketman.resetjamfconnectloginscreen
     depends_on:
-      - step-1
-  - id: step-3
+      - profile
+  - id: policy
     name: Create Policy
     module: policy/create
     properties:
@@ -55,7 +55,7 @@ steps:
         <?xml version="1.0" encoding="UTF-8"?>
         <policy>
             <general>
-                <name>RCC-Pro Reset Jamf Connect Login Screen ${{sys.execution_id}}</name>
+                <name>RCC - Reset Jamf Connect Login Screen - ${{sys.execution_id}}</name>
                 <enabled>true</enabled>
                 <trigger>USER_INITIATED</trigger>
                 <trigger_checkin>false</trigger_checkin>
