@@ -7,7 +7,7 @@ tool:
     The Edit User Profile tool facilitates user selection of a building,
     department, or both, based on the information available in Jamf Pro. This
     tool simplifies the configuration process by presenting users with a dialog
-    box to make their selections, which are then updated in Jamf Pro.
+    box to make their selections, which are then updated in Jamf Pro. TEST
 
 
     Test2
