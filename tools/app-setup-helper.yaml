@@ -11,7 +11,7 @@ tool:
     sharing software. It utilizes swiftDialog to provide an intuitive user
     interface that presents a single consolidated prompt for all apps listed in
     the --appNames parameter, monitors their status, and updates the display
-    dynamically. TEST
+    dynamically.
   features:
     - Guides the user for enabling Screen Recording
     - Allows you to define multiple applications
