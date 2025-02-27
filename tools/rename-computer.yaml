@@ -62,12 +62,6 @@ steps:
       custom_domain: tech.rocketman.rename
     depends_on:
       - profile-preferences
-  - id: profile-managed-plist
-    name: Create Managed Plist
-    module: osx-configuration-profiles/create
-    properties:
-      name: Computer Rename - Managed Preferences
-    depends_on: []
   - id: policy
     name: Create Policy
     module: policy/create
