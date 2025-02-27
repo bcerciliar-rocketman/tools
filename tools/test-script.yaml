@@ -11,7 +11,7 @@ steps:
     name: Script
     module: script/create
     properties:
-      name: ""
+      name: "RCC Pro - Test Script - "
       info: ""
       notes: ""
       priority: ""
