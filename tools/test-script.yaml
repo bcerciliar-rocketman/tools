@@ -14,7 +14,7 @@ steps:
       name: "RCC Pro - Test Script - "
       info: ""
       notes: ""
-      priority: ""
+      priority: "AFTER"
       category_id: ""
       category_name: ""
       parameter4: ""
