@@ -11,7 +11,7 @@ steps:
     name: Smart Group
     module: computer-group/create
     properties:
-      xml: |>
+      xml: |
         <computer_group>
         	<name>RCC Pro - Smart Group - ${{sys.execution_id}}</name>
         	<is_smart>true</is_smart>
