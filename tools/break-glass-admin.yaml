@@ -6,7 +6,7 @@ tool:
     The Break Glass Admin tool creates or manages a backdoor administrator
     account with a customizable, secure password. It supports both static and
     randomized password generation methods and is designed for emergency access
-    to user devices.
+    to user devices. TEST
   features:
     - Unique Randomized Password for Each Computer
     - Set multiple randomized password types
