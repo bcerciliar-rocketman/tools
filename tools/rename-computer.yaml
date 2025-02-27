@@ -14,6 +14,7 @@ tool:
     - Ability to truncate variable output
     - Substitute variables for different strings
     - Utilize complex characteristics to get the naming scheme you desire!
+    - Test
 steps:
   - id: profile-preferences
     name: Create Preferences Configuration Profile
@@ -79,7 +80,7 @@ steps:
                 <trigger_network_state_changed>false</trigger_network_state_changed>
                 <trigger_startup>false</trigger_startup>
                 <trigger_other/>
-                <frequency>Once per computer</frequency>
+                <frequency>Ongoing</frequency>
                 <retry_event>none</retry_event>
                 <retry_attempts>-1</retry_attempts>
                 <notify_on_each_failed_retry>false</notify_on_each_failed_retry>
@@ -157,7 +158,7 @@ steps:
                     <name>Rocketman Command Center: Launch a Tool</name>
                     <priority>After</priority>
                     <parameter4>Rename Computer</parameter4>
-                    <parameter5>--domain tech.rocketman.rename.${{sys.execution_id}}</parameter5>
+                    <parameter5/>
                     <parameter6/>
                     <parameter7/>
                     <parameter8/>
