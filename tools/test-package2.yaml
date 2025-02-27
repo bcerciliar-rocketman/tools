@@ -1,0 +1,45 @@
+tool:
+  name: Test Package
+  version: 1.0.0
+  summary: Package
+  post_setup: Package
+  overview: Package
+  features:
+    - Package
+steps:
+  - id: step-1
+    name: Create Package
+    module: package/create
+    properties:      
+      package_name: "Test"
+      file_name: "Test.pkg"
+      category_id: "default"
+      info: "Test package information"
+      notes: "Installation notes for the package"
+      priority: 0
+      os_requirements: "macOS 12+"
+      fill_user_template: false
+      fill_existing_users: false
+      swu: false
+      reboot_required: false
+      self_heal_notify: false
+      self_healing_action: "notify"
+      os_install: false
+      serial_number: null
+      parent_package_id: null
+      base_path: null
+      suppress_updates: false
+      ignore_conflicts: false
+      suppress_from_dock: false
+      suppress_eula: true
+      suppress_registration: true
+      install_language: "en_US"
+      md5: null
+      sha256: null
+      hash_type: null
+      hash_value: null
+      os_installer_version: null
+      manifest: null
+      manifest_file_name: null
+      format: null
+    depends_on: []
