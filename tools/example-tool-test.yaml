@@ -1,0 +1,17 @@
+tool:
+  name: Example Tool Test
+  version: 1.0.1
+  summary: Updated example tool description
+  overview: Updated detailed overview
+  features:
+    - feature1
+    - feature2
+    - feature3
+  post_setup: Updated post setup instructions
+steps:
+  - id: step1
+    name: Updated First Step
+    module: example-module
+    properties:
+      prop1: updated_value1
+    depends_on: []
