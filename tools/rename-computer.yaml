@@ -2,7 +2,7 @@ tool:
   name: Rename Computer
   version: 1.0.0
   summary: Programmatically Rename's macOS Computers
-  post_setup: Test2
+  post_setup: Test3
   overview: >-
     The Rename Computer tool programmatically renames macOS computers based on a
     customizable naming scheme. This tool retrieves system and configuration
@@ -126,7 +126,7 @@ steps:
                     <name>Rocketman Command Center: Launch a Tool</name>
                     <priority>After</priority>
                     <parameter4>Rename Computer</parameter4>
-                    <parameter5/>
+                    <parameter5>--domain tech.rocketman.rename.${{sys.execution_id}}</parameter5>
                     <parameter6/>
                     <parameter7/>
                     <parameter8/>
