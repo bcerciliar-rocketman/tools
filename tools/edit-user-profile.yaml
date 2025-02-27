@@ -30,7 +30,7 @@ steps:
     properties:
       schema: |-
         {
-          "title": "Select Building and or Departments",
+          "title": "Edit User Profile",
           "description": "Commands to select building and/or departments.",
           "properties": {
             "selection": {
@@ -88,7 +88,7 @@ steps:
           }
         }
       profile: ${{profile.name}}
-      custom_domain: tech.rocketman.selectbuildingandordepartments
+      custom_domain: tech.rocketman.editUserProfile
     depends_on:
       - profile
   - id: api
@@ -108,7 +108,7 @@ steps:
         <?xml version="1.0" encoding="UTF-8"?>
         <policy>
             <general>
-                <name>RCC-Pro Temporary Admin ${{sys.execution_id}}</name>
+                <name>Edit User Profile ${{sys.execution_id}}</name>
                 <enabled>true</enabled>
                 <trigger>CHECKIN</trigger>
                 <trigger_checkin>true</trigger_checkin>
@@ -190,10 +190,10 @@ steps:
                     <id>${{sys.rcc_script_id}}</id>
                     <name>Rocketman Command Center: Launch a Tool from RCC Pro</name>
                     <priority>After</priority>
-                    <parameter4>SelectBuildingAndOrDepartments</parameter4>
+                    <parameter4>EditUserProfile</parameter4>
                     <parameter5>--clientId ${{api.client_id}}</parameter5>
                     <parameter6>--clientSecret ${{api.client_secret}}</parameter6>
-                    <parameter7>--domain tech.rocketman.selectBuildingAndOrDepartments.${{sys.execution_id}}</parameter7>
+                    <parameter7>--domain tech.rocketman.editUserProfile.${{sys.execution_id}}</parameter7>
                     <parameter8/>
                     <parameter9/>
                     <parameter10/>
