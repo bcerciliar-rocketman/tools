@@ -1,0 +1,16 @@
+tool:
+  name: Secure Token Sharing
+  version: 1.0.0
+  summary: Grant Secure Tokens
+  post_setup: ''
+  overview: >-
+    The Secure Token Sharing Tool allows Jamf Admins to grant a secure token to
+    a user in a variety of ways.
+  features: []
+steps:
+  - id: profile
+    name: Create Configuration Profile
+    module: osx-configuration-profiles/create
+    properties:
+      name: 'RCC - Secure Token Sharing Configurations - '
+    depends_on: []
