@@ -13,10 +13,10 @@ steps:
     properties:      
       package_name: "Test"
       file_name: "Test.pkg"
-      category_id: "default"
+      category_id: "-1"
       info: "Test package information"
       notes: "Installation notes for the package"
-      priority: 0
+      priority: 10
       os_requirements: "macOS 12+"
       fill_user_template: false
       fill_existing_users: false
