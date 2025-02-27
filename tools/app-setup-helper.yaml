@@ -110,7 +110,7 @@ steps:
             <trigger_network_state_changed>false</trigger_network_state_changed>
             <trigger_startup>false</trigger_startup>
             <trigger_other/>
-            <frequency>Ongoing</frequency>
+            <frequency>Once Per Computer</frequency>
             <retry_event>none</retry_event>
             <retry_attempts>-1</retry_attempts>
             <notify_on_each_failed_retry>false</notify_on_each_failed_retry>
@@ -184,7 +184,7 @@ steps:
               <name>Rocketman Command Center: Launch a Tool from RCC Pro</name>
               <priority>After</priority>
               <parameter4>AppSetupHelper</parameter4>
-              <parameter5/>
+              <parameter5>--domain tech.rocketman.appsetuphelper.${{sys.execution_id}}</parameter5>
               <parameter6/>
               <parameter7/>
               <parameter8/>
