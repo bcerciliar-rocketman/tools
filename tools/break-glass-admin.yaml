@@ -23,7 +23,7 @@ steps:
     name: Break Glass Admin Preferences
     module: osx-configuration-profiles/create
     properties:
-      name: 'RCC | Break Glass Admin Preferences | '
+      name: 'RCC - Break Glass Admin Preferences - '
     depends_on: []
   - id: step-2
     name: Break Glass Admin Preferences - Schema
@@ -195,7 +195,7 @@ steps:
         <?xml version="1.0" encoding="UTF-8"?>
         <policy>
             <general>
-                <name>RCC | Break Glass Admin | ${{sys.execution_id}}</name>
+                <name>RCC - Break Glass Admin - ${{sys.execution_id}}</name>
                 <enabled>true</enabled>
                 <trigger>CHECKIN</trigger>
                 <trigger_checkin>true</trigger_checkin>
