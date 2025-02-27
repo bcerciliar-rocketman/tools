@@ -1,0 +1,15 @@
+tool:
+  name: Test Smart Group
+  version: 1.0.0
+  summary: Test Smart Group
+  post_setup: Test Smart Group
+  overview: Test Smart Group
+  features:
+    - Test Smart Group
+steps:
+  - id: step-1
+    name: Smart Group
+    module: static-groups/create
+    properties:
+      name: ''
+    depends_on: []
