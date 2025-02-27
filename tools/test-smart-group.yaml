@@ -13,22 +13,22 @@ steps:
     properties:
       xml: |
         <computer_group>
-        	<name>RCC Pro - Smart Group - ${{sys.execution_id}}</name>
-        	<is_smart>true</is_smart>
-        	<site>
-        		<id>-1</id>
-        		<name>None</name>
-        	</site>
-        	<criteria>
-        		<criterion>
-        			<name>Last Inventory Update</name>
-        			<priority>0</priority>
-        			<and_or>and</and_or>
-        			<search_type>more than x days ago</search_type>
-        			<value>7</value>
-        			<opening_paren>false</opening_paren>
-        			<closing_paren>false</closing_paren>
-        		</criterion>
-        	</criteria>
+          <name>RCC Pro - Smart Group - ${{sys.execution_id}}</name>
+          <is_smart>true</is_smart>
+          <site>
+            <id>-1</id>
+            <name>None</name>
+          </site>
+          <criteria>
+            <criterion>
+              <name>Last Inventory Update</name>
+              <priority>0</priority>
+              <and_or>and</and_or>
+              <search_type>more than x days ago</search_type>
+              <value>7</value>
+              <opening_paren>false</opening_paren>
+              <closing_paren>false</closing_paren>
+            </criterion>
+          </criteria>
         </computer_group>
     depends_on: []
