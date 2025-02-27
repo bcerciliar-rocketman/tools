@@ -44,13 +44,13 @@ steps:
                 <trigger_network_state_changed>false</trigger_network_state_changed>
                 <trigger_startup>false</trigger_startup>
                 <trigger_other/>
-                <frequency>Ongoing</frequency>
+                <frequency>Once per computer</frequency>
                 <retry_event>none</retry_event>
                 <retry_attempts>-1</retry_attempts>
                 <notify_on_each_failed_retry>false</notify_on_each_failed_retry>
                 <location_user_only>false</location_user_only>
                 <target_drive>/</target_drive>
-                <offline>true</offline>
+                <offline>false</offline>
                 <date_time_limitations>
                     <activation_date/>
                     <activation_date_epoch>0</activation_date_epoch>
