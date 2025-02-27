@@ -11,6 +11,36 @@ steps:
     name: Create Package
     module: package/create
     properties:
-      name: 'Test'
+      packageName: "Test"
+      fileName: "Test.pkg"
+      categoryId: "default"
+      info: "Test package information"
+      notes: "Installation notes for the package"
+      priority: 0
+      osRequirements: "macOS 12+"
+      fillUserTemplate: false
+      fillExistingUsers: false
+      swu: false
+      rebootRequired: false
+      selfHealNotify: false
+      selfHealingAction: "notify"
+      osInstall: false
+      serialNumber: null
+      parentPackageId: null
+      basePath: null
+      suppressUpdates: false
+      ignoreConflicts: false
+      suppressFromDock: false
+      suppressEula: true
+      suppressRegistration: true
+      installLanguage: "en_US"
+      md5: null
+      sha256: null
+      hashType: null
+      hashValue: null
+      osInstallerVersion: null
+      manifest: null
+      manifestFileName: null
+      format: null
       privileges: []
     depends_on: []
