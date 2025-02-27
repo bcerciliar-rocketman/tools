@@ -1,0 +1,16 @@
+tool:
+  name: Test Package
+  version: 1.0.0
+  summary: Package
+  post_setup: Package
+  overview: Package
+  features:
+    - Package
+steps:
+  - id: step-1
+    name: Create Package
+    module: api-roles-clients/create
+    properties:
+      name: ''
+      privileges: []
+    depends_on: []
