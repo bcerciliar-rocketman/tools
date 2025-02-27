@@ -12,13 +12,13 @@ tool:
   features: []
 steps:
   - id: profile
-    name: User Privilege Management Preferences
+    name: Create Configuration Profile
     module: osx-configuration-profiles/create
     properties:
       name: 'RCC - User Privilege Management Preferences - '
     depends_on: []
   - id: schema
-    name: User Privilege Management - Schema
+    name: Add JSON Schema
     module: osx-configuration-profiles/acs-external-applications
     properties:
       schema: |-
@@ -71,7 +71,7 @@ steps:
     depends_on:
       - profile
   - id: policy
-    name: Policy
+    name: Create Policy
     module: policy/create
     properties:
       xml: |
