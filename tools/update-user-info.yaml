@@ -23,7 +23,6 @@ steps:
         - Read LDAP Servers
         - Update LDAP Servers
         - Read Computers
-        - Read Users
     depends_on: []
   - id: policy
     name: Create Policy
