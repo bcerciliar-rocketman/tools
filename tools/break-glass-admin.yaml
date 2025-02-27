@@ -361,7 +361,7 @@ steps:
     name: Extension Attributes
     module: extension-attributes/create
     properties:
-      name: 'RCC | Break Glass Admin Password | '
+      name: 'RCC - Break Glass Admin Password - '
       description: This script will retrieve the Backdoor Admin Password
       data_type: STRING
       inventory_display_type: EXTENSION_ATTRIBUTES
