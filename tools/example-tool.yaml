@@ -1,0 +1,16 @@
+tool:
+  name: example-tool
+  version: 1.0.0
+  summary: Example tool description
+  overview: Detailed overview
+  features:
+    - feature1
+    - feature2
+  post_setup: Post setup instructions
+steps:
+  - id: step1
+    name: First Step
+    module: example-module
+    properties:
+      prop1: value1
+    depends_on: []
