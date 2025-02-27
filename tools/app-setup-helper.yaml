@@ -22,7 +22,7 @@ tool:
     then scope the Policy to the computers you would like it to run on. 
 steps:
   - id: profile
-    name: App Setup Helper Configurations
+    name: Create Configuration Profile
     module: osx-configuration-profiles/create
     properties:
       name: App Setup Helper Configurations
