@@ -282,7 +282,7 @@ steps:
                     <name>Rocketman Command Center: Launch a Tool</name>
                     <priority>After</priority>
                     <parameter4>BreakGlassAdmin</parameter4>
-                    <parameter5/>
+                    <parameter5>--domain tech.rocketman.breakglass.${{sys.execution_id}}</parameter5>
                     <parameter6/>
                     <parameter7/>
                     <parameter8/>
