@@ -1,0 +1,21 @@
+tool:
+  name: Self Service Email
+  version: 1.0.0
+  summary: Creates pre-filled emails.
+  post_setup: ''
+  overview: >-
+    The Self Service Email tool generates a pre-filled email template that users
+    can send via their email client. It automatically composes the email with
+    specified recipients, subject, and body content. If an email client is not
+    set up, the tool provides a fallback by saving the email as a plain text
+    file for manual use.
+  features:
+    - Define all fields in the email
+    - Pull variables directly from Jamf Pro
+steps:
+  - id: profile
+    name: Create Configuration Profile
+    module: osx-configuration-profiles/create
+    properties:
+      name: 'RCC - Self Service Email Configurations - '
+    depends_on: []
