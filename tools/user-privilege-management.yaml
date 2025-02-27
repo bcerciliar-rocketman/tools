@@ -8,7 +8,7 @@ tool:
     macOS devices. It enables administrators to promote a standard user to an
     admin or demote an admin to a standard user. This tool allows targeting of
     specific user accounts and the exclusion of others, providing flexibility
-    and precise control over account privileges.
+    and precise control over account privileges. Test
   features: []
 steps:
   - id: profile
