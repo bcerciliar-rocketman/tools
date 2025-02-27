@@ -22,7 +22,7 @@ steps:
     name: Create Configuration Profile
     module: osx-configuration-profiles/create
     properties:
-      name: RCC - Edit User Profile Configurations
+      name: 'RCC | Edit User Profile Configurations | '
     depends_on: []
   - id: json
     name: Add JSON Schema
@@ -95,7 +95,7 @@ steps:
     name: Creating API Roles and Clients
     module: api-roles-clients/create
     properties:
-      name: RCC - Edit User Profile
+      name: 'RCC | Edit User Profile | '
       privileges:
         - Read Buildings
         - Read Departments
@@ -108,7 +108,7 @@ steps:
         <?xml version="1.0" encoding="UTF-8"?>
         <policy>
             <general>
-                <name>Edit User Profile ${{sys.execution_id}}</name>
+                <name>RCC | Edit User Profile | ${{sys.execution_id}}</name>
                 <enabled>true</enabled>
                 <trigger>CHECKIN</trigger>
                 <trigger_checkin>true</trigger_checkin>
