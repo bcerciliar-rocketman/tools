@@ -22,13 +22,13 @@ tool:
     - Utilize complex characteristics to get the naming scheme you desire!
 steps:
   - id: profile-preferences
-    name: Create Preferences Configuration Profile
+    name: Create Configuration Profile
     module: osx-configuration-profiles/create
     properties:
       name: 'RCC - Rename Computer Configuration - '
     depends_on: []
   - id: json-preferences
-    name: Add JSON Schema to Preferences Configuration Profile
+    name: Add JSON Schema
     module: osx-configuration-profiles/acs-external-applications
     properties:
       schema: |-
