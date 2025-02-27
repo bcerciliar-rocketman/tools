@@ -32,7 +32,9 @@ steps:
     properties:
       name: RCC-Pro Temporary Admin
       privileges:
-        - all
+        - Update Static Computer Groups
+        - Read Static Computer Groups
+        - Create Computers
     depends_on: []
   - id: policy
     name: Create Policy
