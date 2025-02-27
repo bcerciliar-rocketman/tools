@@ -1,0 +1,18 @@
+tool:
+  name: 'Rapid Response '
+  version: 1.0.0
+  summary: Rapidly deploys policies in seconds
+  post_setup: ''
+  overview: >+
+    Deploys a LaunchDaemon to the Mac that checks to see if a Managed Preference
+    exists on the computer. Once it sees that it exists, it runs a shell script
+    based on the instructions inside of the Managed Preference file.
+
+  features: []
+steps:
+  - id: profile
+    name: Create Configuration Profile
+    module: osx-configuration-profiles/create
+    properties:
+      name: 'RCC - Rapid Response - '
+    depends_on: []
