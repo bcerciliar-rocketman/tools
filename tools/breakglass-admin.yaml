@@ -262,21 +262,6 @@ steps:
                     <ibeacons/>
                 </exclusions>
             </scope>
-            <self_service>
-                <use_for_self_service>false</use_for_self_service>
-                <self_service_display_name/>
-                <install_button_text>Install</install_button_text>
-                <reinstall_button_text>Reinstall</reinstall_button_text>
-                <self_service_description/>
-                <force_users_to_view_description>false</force_users_to_view_description>
-                <self_service_icon/>
-                <feature_on_main_page>false</feature_on_main_page>
-                <self_service_categories/>
-                <notification>false</notification>
-                <notification_type>Self Service</notification_type>
-                <notification_subject>Break Glass Admin (or whatever we want to call this)</notification_subject>
-                <notification_message/>
-            </self_service>
             <package_configuration>
                 <packages>
                     <size>0</size>
@@ -290,8 +275,8 @@ steps:
                     <name>Rocketman Command Center: Launch a Tool</name>
                     <priority>After</priority>
                     <parameter4>BreakGlassAdmin</parameter4>
-                    <parameter5>--clientId ${{api.client_id}}</parameter5>
-                    <parameter6>--clientSecret ${{api.client_secret}}</parameter6>
+                    <parameter5/>
+                    <parameter6/>
                     <parameter7/>
                     <parameter8/>
                     <parameter9/>
