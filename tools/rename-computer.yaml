@@ -1,0 +1,23 @@
+tool:
+  name: Rename Computer
+  version: 1.0.0
+  summary: Programmatically Rename's macOS Computers
+  post_setup: ''
+  overview: >-
+    The Rename Computer tool programmatically renames macOS computers based on a
+    customizable naming scheme. This tool retrieves system and configuration
+    data, applies user-defined formatting, and sets the new computer name using
+    Jamf.
+  features:
+    - Utilize complex formatting and substitution based on available variables
+    - Over 20 variables available
+    - Ability to truncate variable output
+    - Substitute variables for different strings
+    - Utilize complex characteristics to get the naming scheme you desire!
+steps:
+  - id: profile
+    name: Create Configuration Profile
+    module: osx-configuration-profiles/create
+    properties:
+      name: 'RCC - Rename Computer Configuration - '
+    depends_on: []
