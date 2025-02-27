@@ -24,13 +24,13 @@ steps:
     name: Create Static Group
     module: static-groups/create
     properties:
-      name: RCC-Pro Temporary Admin Custom Static Group
+      name: 'RCC - Temporary Admin Group - '
     depends_on: []
   - id: api
     name: Create API Roles and Clients
     module: api-roles-clients/create
     properties:
-      name: RCC-Pro Temporary Admin
+      name: 'RCC - Temporary Admin - '
       privileges:
         - Update Static Computer Groups
         - Read Static Computer Groups
@@ -44,7 +44,7 @@ steps:
         <?xml version="1.0" encoding="UTF-8"?>
         <policy>
             <general>
-                <name>RCC-Pro Temporary Admin ${{sys.execution_id}}</name>
+                <name>RCC - Temporary Admin - ${{sys.execution_id}}</name>
                 <enabled>true</enabled>
                 <trigger>USER_INITIATED</trigger>
                 <trigger_checkin>false</trigger_checkin>
@@ -226,10 +226,10 @@ steps:
     name: Create Configuration Profile
     module: osx-configuration-profiles/create
     properties:
-      name: RCC-Pro Temporary Admin
+      name: 'RCC - Temporary Admin - '
     depends_on: []
   - id: profile-external
-    name: Create Configuration Profile - External Applications
+    name: Add JSON Schema
     module: osx-configuration-profiles/acs-external-applications
     properties:
       profile: ${{profile.name}}
