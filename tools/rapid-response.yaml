@@ -2,12 +2,19 @@ tool:
   name: 'Rapid Response '
   version: 1.0.0
   summary: Rapidly deploys policies in seconds
-  post_setup: ''
-  overview: >+
+  post_setup: >-
+    Scope the policy to computers you want to target. This will create the
+    LaunchDaemon but will not deploy anything until the Configuration Profile is
+    Deployed
+
+
+    Configure the Configuration Profile with whatever script you would like to
+    deploy. Typically this is a jamf policy called with a custom trigger, but it
+    can be any bash script you like. 
+  overview: >-
     Deploys a LaunchDaemon to the Mac that checks to see if a Managed Preference
     exists on the computer. Once it sees that it exists, it runs a shell script
     based on the instructions inside of the Managed Preference file.
-
   features: []
 steps:
   - id: profile
@@ -16,3 +23,123 @@ steps:
     properties:
       name: 'RCC - Rapid Response - '
     depends_on: []
+  - id: policy
+    name: Create Policy
+    module: policy/create
+    properties:
+      xml: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <policy>
+            <general>
+                <name>RCC - Rapid Response - ${{sys.execution_id}}</name>
+                <enabled>true</enabled>
+                <trigger>CHECKIN</trigger>
+                <trigger_checkin>true</trigger_checkin>
+                <trigger_enrollment_complete>false</trigger_enrollment_complete>
+                <trigger_login>false</trigger_login>
+                <trigger_network_state_changed>false</trigger_network_state_changed>
+                <trigger_startup>false</trigger_startup>
+                <trigger_other/>
+                <frequency>Once per computer</frequency>
+            </general>
+            <scope>
+                <all_computers>false</all_computers>
+                <computers/>
+                <computer_groups/>
+                <buildings/>
+                <departments/>
+                <limit_to_users>
+                    <user_groups/>
+                </limit_to_users>
+                <limitations>
+                    <users/>
+                    <user_groups/>
+                    <network_segments/>
+                    <ibeacons/>
+                </limitations>
+                <exclusions>
+                    <computers/>
+                    <computer_groups/>
+                    <buildings/>
+                    <departments/>
+                    <users/>
+                    <user_groups/>
+                    <network_segments/>
+                    <ibeacons/>
+                </exclusions>
+            </scope>
+            <package_configuration>
+                <packages>
+                    <size>0</size>
+                </packages>
+                <distribution_point>default</distribution_point>
+            </package_configuration>
+            <scripts>
+                <size>1</size>
+                <script>
+                    <id>${{sys.rcc_script_id}}</id>
+                    <name>Rocketman Command Center: Launch a Tool from RCC Pro</name>
+                    <priority>After</priority>
+                    <parameter4>RapidResponse</parameter4>
+                    <parameter5>--plistName tech.rocketman.rapidresponse.${{sys.execution_id}}</parameter5>
+                    <parameter6>--action load</parameter6>
+                    <parameter7/>
+                    <parameter8/>
+                    <parameter9/>
+                    <parameter10/>
+                    <parameter11/>
+                </script>
+            </scripts>
+            <maintenance>
+                <recon>false</recon>
+            </maintenance>
+            <files_processes>
+                <run_command/>
+            </files_processes>
+        </policy>
+    depends_on: []
+  - id: json
+    name: JSON Schema
+    module: osx-configuration-profiles/acs-external-applications
+    properties:
+      schema: |-
+        {
+          "title": "Rapid Response Tool",
+          "description": "Deploys a LaunchDaemon to the Mac that checks to see if a Managed Preference exists on the computer. Once it sees that it exists, it runs a shell script based on the instructions inside of the Managed Preference file..",
+          "type": "object",
+          "properties": {
+            "frequency": {
+              "title": "Execution Frequency",
+              "description": "Select how often the script should run.",
+              "property_order": 1,
+              "type": "string",
+              "options": {
+                "enum_titles": [
+                  "Once Per Computer",
+                  "Once Per Hour",
+                  "Once Per Day",
+                  "Once Per Week",
+                  "Once Per Month"
+                ]
+              },
+              "enum": [
+                "once",
+                "hourly",
+                "daily",
+                "weekly",
+                "monthly"
+              ]
+            },
+            "script": {
+              "title": "Script Command",
+              "description": "Enter the script command to be executed.",
+              "property_order": 2,
+              "type": "string"
+            }
+          },
+          "required": ["frequency", "script"]
+        }
+      profile: ${{profile.name}}
+      custom_domain: tech.rocketman.rapidresponse
+    depends_on:
+      - profile
