@@ -1,0 +1,112 @@
+tool:
+  name: Escrow Buddy
+  version: 1.0.0
+  summary: Only for test
+  post_setup: Only for test
+  overview: Only for test
+  features:
+    - test
+steps:
+  - id: package
+    name: Create Package
+    module: package/create
+    properties:
+      href: >-
+        https://github.com/macadmins/escrow-buddy/releases/download/v1.0.0/Escrow.Buddy-1.0.0.pkg
+      package_name: 'RCC Pro - Escrow Package - '
+      file_name: Escrow.Buddy.${{sys.execution_id}}.pkg
+      category_id: '-1'
+      info: Test package information
+      notes: Installation notes for the package
+      priority: 10
+      os_requirements: macOS 12+
+      fill_user_template: false
+      fill_existing_users: false
+      swu: false
+      reboot_required: false
+      self_heal_notify: false
+      self_healing_action: notify
+      os_install: false
+      serial_number: null
+      parent_package_id: null
+      base_path: null
+      suppress_updates: false
+      ignore_conflicts: false
+      suppress_from_dock: false
+      suppress_eula: true
+      suppress_registration: true
+      install_language: en_US
+      md5: null
+      sha256: null
+      hash_type: null
+      hash_value: null
+      os_installer_version: null
+      manifest: null
+      manifest_file_name: null
+      format: null
+  - id: step-2
+    name: Create Smart Group
+    module: computer-group/create
+    properties:
+      xml: |-
+        <computer_group>
+          <name>RCC Pro - Escrow Smart Group - ${{sys.execution_id}}</name>
+          <is_smart>true</is_smart>
+          <site>
+            <id>-1</id>
+            <name>None</name>
+          </site>
+          <criteria>
+            <criterion>
+              <name>Last Inventory Update</name>
+              <priority>0</priority>
+              <and_or>and</and_or>
+              <search_type>more than x days ago</search_type>
+              <value>7</value>
+              <opening_paren>false</opening_paren>
+              <closing_paren>false</closing_paren>
+            </criterion>
+          </criteria>
+        </computer_group>
+    depends_on: []
+  - id: step-3
+    name: Create Profile
+    module: osx-configuration-profiles/create
+    properties:
+      name: Escrow Profile
+    depends_on:
+      - package
+  - id: step-4
+    name: Create File Vault
+    module: >-
+      osx-configuration-profiles/security-privacy/filevault/escrow-personal-recovery-key
+    properties:
+      profile: ${{step-3.name}}
+      encryption_method: Automatically
+      escrow_location: Organization
+      record_number: ID-1234
+    depends_on:
+      - step-3
+      - package
+  - id: step-5
+    name: Create Script
+    module: script/create
+    properties:
+      name: Escrow Script
+      info: test
+      notes: test
+      priority: AFTER
+      category_id: ''
+      category_name: ''
+      parameter4: '[optional flags] <toolName>'
+      parameter5: arg for <toolName>
+      parameter6: arg for <toolName>
+      parameter7: arg for <toolName>
+      parameter8: arg for <toolName>
+      parameter9: arg for <toolName>
+      parameter10: arg for <toolName>
+      parameter11: arg for <toolName>
+      os_requirements: 10.10.x
+      script_contents: echo 'Test'
+    depends_on:
+      - package
