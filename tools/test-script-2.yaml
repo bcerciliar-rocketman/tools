@@ -3,7 +3,7 @@ tool:
   version: 1.0.0
   summary: Test Script 3
   post_setup: Test Script 3
-  overview: Test Script 3
+  overview: Test Script 4
   features:
     - Test Script
 steps:
