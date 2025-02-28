@@ -259,3 +259,4 @@ steps:
           </disk_encryption>
         </policy>
     depends_on: []
+id: app-setup-helper
