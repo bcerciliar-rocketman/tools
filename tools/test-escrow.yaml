@@ -1,0 +1,26 @@
+tool:
+  name: Test Escrow
+  version: 1.0.0
+  summary: Test Escrow
+  post_setup: Test Escrow
+  overview: Test Escrow
+  features:
+    - Test Escrow
+steps:
+  - id: profile
+    name: Config Profile
+    module: osx-configuration-profiles/create
+    properties:
+      name: Auto Deploy Test Escrow
+    depends_on: []
+  - id: escrow
+    name: FileVault
+    module: >-
+      osx-configuration-profiles/security-privacy/filevault/escrow-personal-recovery-key
+    properties:
+      profile: ${{profile.name}}
+      encryption_method: Automatically
+      escrow_location: Organization
+      record_number: ID-1234
+    depends_on:
+      - profile
