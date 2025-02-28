@@ -11,20 +11,21 @@ steps:
     name: Create Package
     module: package/create
     properties:
-      href: "https://github.com/macadmins/escrow-buddy/releases/download/v1.0.0/Escrow.Buddy-1.0.0.pkg"
-      package_name: "RCC Pro - Escrow Package - "
-      file_name: "Escrow.Buddy.pkg"
-      category_id: "-1"
-      info: "Test package information"
-      notes: "Installation notes for the package"
+      href: >-
+        https://github.com/macadmins/escrow-buddy/releases/download/v1.0.0/Escrow.Buddy-1.0.0.pkg
+      package_name: 'RCC Pro - Escrow Package - '
+      file_name: Escrow.Buddy.${{sys.execution_id}}.pkg
+      category_id: '-1'
+      info: Test package information
+      notes: Installation notes for the package
       priority: 10
-      os_requirements: "macOS 12+"
+      os_requirements: macOS 12+
       fill_user_template: false
       fill_existing_users: false
       swu: false
       reboot_required: false
       self_heal_notify: false
-      self_healing_action: "notify"
+      self_healing_action: notify
       os_install: false
       serial_number: null
       parent_package_id: null
@@ -34,7 +35,7 @@ steps:
       suppress_from_dock: false
       suppress_eula: true
       suppress_registration: true
-      install_language: "en_US"
+      install_language: en_US
       md5: null
       sha256: null
       hash_type: null
@@ -44,3 +45,4 @@ steps:
       manifest_file_name: null
       format: null
     depends_on: []
+id: test-package
