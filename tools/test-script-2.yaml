@@ -2,7 +2,7 @@ tool:
   name: Test Script 2
   version: 1.0.0
   summary: Test Script 4
-  post_setup: Test Script 6
+  post_setup: Test Script 7
   overview: Test Script 4
   features:
     - Test Script
