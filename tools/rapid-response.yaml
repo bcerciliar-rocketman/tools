@@ -15,10 +15,10 @@ tool:
     Deploys a LaunchDaemon to the Mac that checks to see if a Managed Preference
     exists on the computer. Once it sees that it exists, it runs a shell script
     based on the instructions inside of the Managed Preference file.
-
-
-    Test
-  features: []
+  features:
+    - Deploys a command in seconds!
+    - Allows command to run on regular intervals
+    - Collect status reports of the LaunchDaemon status
 steps:
   - id: profile
     name: Create Configuration Profile
@@ -146,3 +146,53 @@ steps:
       custom_domain: tech.rocketman.rapidresponse
     depends_on:
       - profile
+  - id: ea
+    name: Create Extension Attribute
+    module: extension-attributes/create
+    properties:
+      name: Rapid Response Status
+      description: >-
+        An additional tool should be setup to monitor the status of this plist
+        on every inventory update to ensure it is running. It will be called via
+        an extension attribute.
+      data_type: STRING
+      inventory_display_type: EXTENSION_ATTRIBUTES
+      input_type: SCRIPT
+      script_contents: >-
+        #!/bin/zsh
+
+
+        # Define the username of the backdoor admin account
+
+        PlistName="tech.rocketman.rapidresponse.${{sys.execution_id}}"
+
+
+        # Check if rocketman (RCC) is installed
+
+        if ! command -v rocketman &>/dev/null; then
+            echo "<result>RCC Not Installed</result>"
+            exit 0
+        fi
+
+
+        # Retrieve the password from the keychain
+
+        RapidResponseStatus=$(rocketman RapidResponseStatus --plistName
+        $PlistName 2>/dev/null)
+
+        exitCode=$?
+
+
+        # Evaluate the result
+
+        if [[ $exitCode -eq 0 && -n "$RapidResponseStatus" ]]; then
+            # Successfully retrieved password
+            echo "<result>$RapidResponseStatus</result>"
+        elif [[ $exitCode -eq 1 ]]; then
+            # Tool indicates no password set
+            echo "<result>Rapid Response Status not set</result>"
+        else
+            # Any other non-zero exit code is considered an unknown error
+            echo "<result>Other Error Occurred</result>"
+        fi
+    depends_on: []
