@@ -15,6 +15,9 @@ tool:
     Deploys a LaunchDaemon to the Mac that checks to see if a Managed Preference
     exists on the computer. Once it sees that it exists, it runs a shell script
     based on the instructions inside of the Managed Preference file.
+
+
+    Test
   features: []
 steps:
   - id: profile
