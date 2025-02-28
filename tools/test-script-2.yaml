@@ -1,9 +1,9 @@
 tool:
   name: Test Script 2
   version: 1.0.0
-  summary: Test Script 2
-  post_setup: Test Script
-  overview: Test Script 2
+  summary: Test Script 3
+  post_setup: Test Script 3
+  overview: Test Script 3
   features:
     - Test Script
 steps:
@@ -28,4 +28,4 @@ steps:
       os_requirements: 10.10.x
       script_contents: echo 'Test'
     depends_on: []
-id: test-script
+id: test-script-2
